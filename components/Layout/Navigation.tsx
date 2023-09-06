@@ -3,6 +3,9 @@ import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+
 type NavLink = {
   label: string;
   href: string;
@@ -18,7 +21,7 @@ const Navigation = ({ navLinks }: INavigation) => {
   console.log(session);
 
   return (
-    <>
+    <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
       {navLinks.map(link => {
         const isActive = pathname === link.href;
 
@@ -36,7 +39,7 @@ const Navigation = ({ navLinks }: INavigation) => {
       ) : (
         <Link href="/signin">SignIn</Link>
       )}
-    </>
+    </Box>
   );
 };
 

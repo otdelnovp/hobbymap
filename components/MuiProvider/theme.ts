@@ -13,6 +13,15 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: roboto.style.fontFamily,
+    h1: {
+      fontSize: '2rem',
+    },
+    h2: {
+      fontSize: '1.8rem',
+    },
+    h3: {
+      fontSize: '1.6rem',
+    },
   },
   components: {
     MuiAppBar: {
@@ -20,6 +29,16 @@ const theme = createTheme({
         root: {
           color: '#333',
           backgroundColor: '#fff',
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        rounded: {
+          borderRadius: 2,
+        },
+        elevation: {
+          boxShadow: '0 3px 20px rgba(155, 166, 178, 0.25)',
         },
       },
     },

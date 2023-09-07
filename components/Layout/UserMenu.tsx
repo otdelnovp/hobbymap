@@ -68,7 +68,7 @@ const UserMenu = () => {
       </Menu>
     </Box>
   ) : (
-    <Button LinkComponent={Link} href="/api/auth/signin" variant="contained">
+    <Button LinkComponent={Link} href="/signin" variant="contained">
       SignIn
     </Button>
   );

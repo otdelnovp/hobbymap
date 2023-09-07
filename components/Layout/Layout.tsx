@@ -1,7 +1,7 @@
 import { Header } from '@/components/Layout/Header';
 import Box from '@mui/material/Box';
 
-export const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Header />
@@ -18,3 +18,5 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     </>
   );
 };
+
+export { Layout };

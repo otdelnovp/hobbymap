@@ -15,6 +15,14 @@ const theme = createTheme({
     fontFamily: roboto.style.fontFamily,
   },
   components: {
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          color: '#333',
+          backgroundColor: '#fff',
+        },
+      },
+    },
     MuiAlert: {
       styleOverrides: {
         root: ({ ownerState }) => ({

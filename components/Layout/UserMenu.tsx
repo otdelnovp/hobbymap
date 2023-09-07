@@ -6,12 +6,15 @@ import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
 
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const settings = ['Profile', 'My locations'];
 
@@ -57,12 +60,17 @@ const UserMenu = () => {
           </MenuItem>
         ))}
         <MenuItem onClick={() => signOut({ callbackUrl: '/' })}>
+          <ListItemIcon>
+            <ExitToAppIcon color={'secondary'} />
+          </ListItemIcon>
           <Typography textAlign="center">Logout</Typography>
         </MenuItem>
       </Menu>
     </Box>
   ) : (
-    <Link href="/api/auth/signin">SignIn</Link>
+    <Button LinkComponent={Link} href="/api/auth/signin" variant="contained">
+      SignIn
+    </Button>
   );
 };
 

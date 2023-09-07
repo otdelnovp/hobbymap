@@ -1,5 +1,6 @@
 import type { AuthOptions, User } from 'next-auth';
 import GoggleProvider from 'next-auth/providers/google';
+import VkProvider from 'next-auth/providers/vk';
 // import Credentials from 'next-auth/providers/credentials';
 // import { users } from '@/data/users';
 
@@ -8,6 +9,10 @@ export const authConfig: AuthOptions = {
     GoggleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_SECRET!,
+    }),
+    VkProvider({
+      clientId: process.env.VK_CLIENT_ID!,
+      clientSecret: process.env.VK_SECRET!,
     }),
     // Credentials({
     //   credentials: {

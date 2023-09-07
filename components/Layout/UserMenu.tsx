@@ -68,7 +68,7 @@ const UserMenu = () => {
       </Menu>
     </Box>
   ) : (
-    <Button LinkComponent={Link} href="/signin" variant="contained">
+    <Button LinkComponent={Link} href="/signin" variant="outlined" size="small">
       SignIn
     </Button>
   );

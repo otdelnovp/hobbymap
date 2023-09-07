@@ -11,7 +11,14 @@ const GoogleButton = () => {
   const callbackUrl = searchParams.get('callbackUrl') || '/';
 
   return (
-    <Button variant="contained" color="error" startIcon={<GoogleIcon />} disableRipple onClick={() => signIn('google', { callbackUrl })}>
+    <Button
+      variant="contained"
+      color="error"
+      startIcon={<GoogleIcon />}
+      disableRipple
+      fullWidth
+      sx={{ mt: 1 }}
+      onClick={() => signIn('google', { callbackUrl })}>
       Sign in with Google
     </Button>
   );

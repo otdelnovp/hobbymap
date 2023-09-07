@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-import { signOut, useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
+import type { User } from '@/helpers/authHelper';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -18,31 +19,29 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const settings = ['Profile', 'My locations'];
 
-const UserMenu = () => {
-  const session = useSession();
+const UserMenu = ({ user }: { user: User }) => {
+  console.log(user);
 
-  console.log(session);
-
-  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const [anchorElUserMenu, setAnchorElUserMenu] = useState<null | HTMLElement>(null);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
+    setAnchorElUserMenu(event.currentTarget);
   };
   const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
+    setAnchorElUserMenu(null);
   };
 
-  return session?.data ? (
+  return user ? (
     <Box sx={{ flexGrow: 0 }}>
-      <Tooltip title={session.data.user?.name} arrow disableInteractive>
+      <Tooltip title={user.name} arrow disableInteractive>
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar alt={session.data.user?.name ?? undefined} src={session.data.user?.image ?? undefined} />
+          <Avatar alt={user.name ?? undefined} src={user.image ?? undefined} />
         </IconButton>
       </Tooltip>
       <Menu
         sx={{ mt: '45px' }}
         id="menu-app-bar"
-        anchorEl={anchorElUser}
+        anchorEl={anchorElUserMenu}
         anchorOrigin={{
           vertical: 'top',
           horizontal: 'right',
@@ -52,7 +51,7 @@ const UserMenu = () => {
           vertical: 'top',
           horizontal: 'right',
         }}
-        open={Boolean(anchorElUser)}
+        open={Boolean(anchorElUserMenu)}
         onClose={handleCloseUserMenu}>
         {settings.map(setting => (
           <MenuItem key={setting} onClick={handleCloseUserMenu}>

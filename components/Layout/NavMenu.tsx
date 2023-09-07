@@ -17,14 +17,14 @@ const navItems = [
 ];
 
 const NavMenu = () => {
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [anchorElNavMenu, setAnchorElNavMenu] = useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
+    setAnchorElNavMenu(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+    setAnchorElNavMenu(null);
   };
 
   return (
@@ -49,7 +49,7 @@ const NavMenu = () => {
         </IconButton>
         <Menu
           id="menu-app-bar"
-          anchorEl={anchorElNav}
+          anchorEl={anchorElNavMenu}
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'left',
@@ -59,7 +59,7 @@ const NavMenu = () => {
             vertical: 'top',
             horizontal: 'left',
           }}
-          open={Boolean(anchorElNav)}
+          open={Boolean(anchorElNavMenu)}
           onClose={handleCloseNavMenu}
           sx={{
             display: { xs: 'block', md: 'none' },

@@ -5,7 +5,7 @@ import Avatar from '@mui/material/Avatar';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 import { GoogleButton } from '@/components/AuthProviders/GoogleButton';
-import { VKButton } from '@/components/AuthProviders/VKButton';
+import { FacebookButton } from '@/components/AuthProviders/FacebookButton';
 
 export default async function Signin() {
   return (
@@ -24,7 +24,7 @@ export default async function Signin() {
             SignIn
           </Typography>
           <GoogleButton />
-          <VKButton />
+          <FacebookButton />
         </Box>
       </Paper>
     </Box>

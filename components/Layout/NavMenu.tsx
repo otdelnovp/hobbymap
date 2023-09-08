@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -31,7 +32,7 @@ const NavMenu = () => {
     <>
       <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
         {navItems.map(page => (
-          <Button key={page.href} onClick={handleCloseNavMenu}>
+          <Button key={page.href} component={Link} href={page.href}>
             {page.label}
           </Button>
         ))}
@@ -65,7 +66,7 @@ const NavMenu = () => {
             display: { xs: 'block', md: 'none' },
           }}>
           {navItems.map(page => (
-            <MenuItem key={page.href} onClick={handleCloseNavMenu}>
+            <MenuItem key={page.href} component={Link} href={page.href} onClick={handleCloseNavMenu}>
               <Typography textAlign="center">{page.label}</Typography>
             </MenuItem>
           ))}

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 import { signOut } from 'next-auth/react';
+// import type { User } from 'next-auth';
 import type { User } from '@/helpers/authHelper';
 
 import Box from '@mui/material/Box';
@@ -17,7 +18,10 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
-const settings = ['Profile', 'My locations'];
+const settings = [
+  { label: 'Profile', href: '/lk/profile' },
+  { label: 'My locations', href: '/lk/locations' },
+];
 
 const UserMenu = ({ user }: { user: User }) => {
   console.log(user);
@@ -54,8 +58,8 @@ const UserMenu = ({ user }: { user: User }) => {
         open={Boolean(anchorElUserMenu)}
         onClose={handleCloseUserMenu}>
         {settings.map(setting => (
-          <MenuItem key={setting} onClick={handleCloseUserMenu}>
-            <Typography textAlign="center">{setting}</Typography>
+          <MenuItem key={setting.href} component={Link} href={setting.href} onClick={handleCloseUserMenu}>
+            <Typography textAlign="center">{setting.label}</Typography>
           </MenuItem>
         ))}
         <MenuItem onClick={() => signOut({ callbackUrl: '/' })}>

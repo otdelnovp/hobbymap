@@ -3,14 +3,14 @@ import type { AuthOptions, User } from 'next-auth';
 import GoggleProvider from 'next-auth/providers/google';
 import FacebookProvider from 'next-auth/providers/facebook';
 
-// import { PrismaAdapter } from '@next-auth/prisma-adapter';
-// import prisma from '@/prisma';
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import prisma from '@/prisma';
 
 // import Credentials from 'next-auth/providers/credentials';
 // import { users } from '@/data/users';
 
 export const authConfig: AuthOptions = {
-  // adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter(prisma),
   providers: [
     GoggleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -43,32 +43,25 @@ export const authConfig: AuthOptions = {
   pages: {
     signIn: '/signin',
   },
-  // debug: process.env.NODE_ENV === 'development',
-  // session: {
-  //   strategy: 'jwt',
-  // },
-  // callbacks: {
-  //   async session({ session, user }) {
-  //     session.userId = user.id;
-  //     session.role = user.role;
-  //     return Promise.resolve(session);
-  //   },
-  // },
-  // callbacks: {
-  //   async jwt({ token, user }) {
-  //     // Persist the OAuth access_token and or the user id to the token right after signin
-  //     if (user) {
-  //       token.accessToken = user.access_token;
-  //       token.id = user.id;
-  //     }
-  //     return token;
-  //   },
-  //   async session({ session, token }) {
-  //     // Send properties to the client, like an access_token and user id from a provider.
-  //     session.accessToken = token.accessToken;
-  //     session.user.id = token.id;
+  session: {
+    strategy: 'jwt',
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      // Persist the OAuth access_token and or the user id to the token right after signin
+      if (user) {
+        token.accessToken = user.access_token;
+        token.id = user.id;
+      }
+      return token;
+    },
+    async session({ session, token, user }) {
+      // Send properties to the client, like an access_token and user id from a provider.
+      session.accessToken = token.accessToken;
+      session.user.id = token.id;
 
-  //     return session;
-  //   },
-  // },
+      return session;
+    },
+  },
+  // debug: process.env.NODE_ENV === 'development',
 };

@@ -1,30 +1,42 @@
 'use client';
-
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import Link from 'next/link';
 
 import { signOut } from 'next-auth/react';
-// import type { User } from 'next-auth';
-import type { User } from '@/helpers/authHelper';
+import { isUserAdmin, type User } from '@/helpers/authHelper';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/material/Menu';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
+
+import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
-const settings = [
-  { label: 'Profile', href: '/lk/profile' },
-  { label: 'My locations', href: '/lk/locations' },
-];
+import SettingsIcon from '@mui/icons-material/Settings';
+import PlaceIcon from '@mui/icons-material/Place';
+import PeopleIcon from '@mui/icons-material/People';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const UserMenu = ({ user }: { user: User }) => {
   console.log(user);
+
+  const getUserMenu = useCallback(
+    (user: User) => {
+      let options = [
+        { icon: <SettingsIcon />, label: 'Profile', href: '/lk/profile' },
+        { icon: <PlaceIcon />, label: 'My locations', href: '/lk/locations' },
+      ];
+      if (isUserAdmin(user)) {
+        options.push({ icon: <PeopleIcon />, label: 'Users', href: '/lk/users' });
+      }
+      return options;
+    },
+    [user],
+  );
 
   const [anchorElUserMenu, setAnchorElUserMenu] = useState<null | HTMLElement>(null);
 
@@ -57,9 +69,10 @@ const UserMenu = ({ user }: { user: User }) => {
         }}
         open={Boolean(anchorElUserMenu)}
         onClose={handleCloseUserMenu}>
-        {settings.map(setting => (
-          <MenuItem key={setting.href} component={Link} href={setting.href} onClick={handleCloseUserMenu}>
-            <Typography textAlign="center">{setting.label}</Typography>
+        {getUserMenu(user).map(menuItem => (
+          <MenuItem key={menuItem.href} component={Link} href={menuItem.href} onClick={handleCloseUserMenu}>
+            {menuItem.icon ? <ListItemIcon>{menuItem.icon}</ListItemIcon> : null}
+            <Typography textAlign="center">{menuItem.label}</Typography>
           </MenuItem>
         ))}
         <MenuItem onClick={() => signOut({ callbackUrl: '/' })}>

@@ -7,3 +7,6 @@ export type User =
       role?: string | null;
     }
   | undefined;
+
+export const isUserRoot = (user: User) => user?.role === 'root';
+export const isUserAdmin = (user: User) => user?.role === 'root' || user?.role === 'admin';

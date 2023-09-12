@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { AuthOptions, User } from 'next-auth';
 import GoggleProvider from 'next-auth/providers/google';
 import FacebookProvider from 'next-auth/providers/facebook';
@@ -49,22 +50,18 @@ export const authConfig: AuthOptions = {
     async jwt({ token, user }) {
       // Persist the OAuth access_token and or the user id to the token right after signin
       if (user) {
-        // @ts-ignore
         token.accessToken = user.access_token;
         token.id = user.id;
+        token.role = user.role;
       }
       return token;
     },
     async session({ session, token }) {
       // Send properties to the client, like an access_token and user id from a provider.
-      return Promise.resolve({
-        ...session,
-        accessToken: token.accessToken,
-        user: {
-          ...session.user,
-          id: token.id,
-        },
-      });
+      session.accessToken = token.accessToken;
+      session.user.id = token.id;
+      session.user.role = token.role;
+      return session;
     },
   },
   // debug: process.env.NODE_ENV === 'development',

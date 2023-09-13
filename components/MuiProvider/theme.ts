@@ -35,7 +35,7 @@ const theme = createTheme({
     MuiPaper: {
       styleOverrides: {
         rounded: {
-          borderRadius: 2,
+          borderRadius: 10,
         },
         elevation: {
           boxShadow: '0 3px 20px rgba(155, 166, 178, 0.25)',

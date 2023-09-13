@@ -51,16 +51,14 @@ export const authConfig: AuthOptions = {
       // Persist the OAuth access_token and or the user id to the token right after signin
       if (user) {
         token.accessToken = user.access_token;
-        token.id = user.id;
-        token.role = user.role;
+        token.user = user;
       }
       return token;
     },
     async session({ session, token }) {
       // Send properties to the client, like an access_token and user id from a provider.
       session.accessToken = token.accessToken;
-      session.user.id = token.id;
-      session.user.role = token.role;
+      session.user = token.user;
       return session;
     },
   },

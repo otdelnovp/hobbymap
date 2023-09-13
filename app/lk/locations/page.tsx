@@ -1,3 +1,9 @@
+import Typography from '@mui/material/Typography';
+
 export default function Locations() {
-  return <main>Locations</main>;
+  return (
+    <Typography component="h1" variant="h3" sx={{ px: 2 }}>
+      My locations
+    </Typography>
+  );
 }

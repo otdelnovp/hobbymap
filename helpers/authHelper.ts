@@ -1,10 +1,12 @@
+export type UserRole = 'root' | 'admin' | 'user';
 export type User =
   | {
       id: string;
       name: string;
       email: string;
       image?: string | null;
-      role?: string | null;
+      role?: UserRole | null;
+      createdAt?: string;
     }
   | undefined;
 

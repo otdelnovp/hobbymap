@@ -35,7 +35,7 @@ model User {
   emailVerified   DateTime?   @map("verifiedAt")
   hashedPassword  String?
   image           String?
-  role            String?
+  role            String?     @default("user")
   createdAt       DateTime    @default(now())
   Account         Account[]
   Session         Session[]

@@ -32,6 +32,7 @@ export const GET = async () => {
 
   try {
     const users = await prisma.user.findMany({
+      where: { role: { not: 'root' } },
       select: { id: true, name: true, email: true, image: true, role: true },
     });
     return NextResponse.json(users);

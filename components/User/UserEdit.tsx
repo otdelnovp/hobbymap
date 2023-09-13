@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import axios from '@/instance/axios';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import axios from '@/instance/axios';
 
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
@@ -36,7 +36,6 @@ export const UserEdit = ({ userItem }: { userItem: User }) => {
 
   const [body, setBody] = useState({ ...userItem });
   const handleFieldChange = (e: any) => {
-    console.log(e.target.value, e.target.checked);
     const { name, value, checked } = e.target;
     setBody(prevBody => ({ ...prevBody, [name]: name === 'role' ? (checked ? 'admin' : 'user') : value }));
   };

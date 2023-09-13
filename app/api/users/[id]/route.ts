@@ -25,7 +25,7 @@ export const GET = async (request: any, { params }: any) => {
 export const PATCH = async (request: any, { params }: any) => {
   try {
     const body = await request.json();
-    const { name, email, role } = body;
+    const { name, email, role, hobby } = body;
 
     const { id } = params;
 
@@ -37,6 +37,7 @@ export const PATCH = async (request: any, { params }: any) => {
         name,
         email,
         role,
+        hobby,
       },
     });
 

@@ -1,4 +1,4 @@
-import type { UserRole } from '@/helpers/authHelper';
+import type { UserRole, UserHobby } from '@/helpers/authHelper';
 import { DefaultSession } from 'next-auth';
 
 declare module 'next-auth' {
@@ -7,8 +7,9 @@ declare module 'next-auth' {
       id: string;
       name: string;
       email: string;
-      role?: UserRole;
       image?: string;
+      role?: UserRole;
+      hobby?: UserHobby;
       createdAt?: string;
     };
     accessToken: string;

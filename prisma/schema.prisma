@@ -36,6 +36,7 @@ model User {
   hashedPassword  String?
   image           String?
   role            String?     @default("user")
+  hobby           String?
   createdAt       DateTime    @default(now())
   Account         Account[]
   Session         Session[]

@@ -1,5 +1,7 @@
-import { Header } from '@/components/Layout/Header';
 import Box from '@mui/material/Box';
+
+import { Header } from '@/components/Layout/Header';
+import { HobbySelect } from '../HobbySelect/HobbySelect';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -15,6 +17,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         }}>
         {children}
       </Box>
+      <HobbySelect />
     </>
   );
 };

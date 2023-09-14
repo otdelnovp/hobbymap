@@ -5,7 +5,7 @@ import { HobbySelect } from '../HobbySelect/HobbySelect';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <>
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Header />
       <Box
         component="main"
@@ -13,12 +13,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           flexGrow: 1,
           bgcolor: 'background.default',
           mt: ['48px', '56px', '64px'],
-          p: 3,
         }}>
         {children}
       </Box>
       <HobbySelect />
-    </>
+    </Box>
   );
 };
 

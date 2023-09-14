@@ -10,12 +10,11 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
-import { hobbyTypes, type User, type UserHobby } from '@/helpers/authHelper';
+import { hobbyTypes } from '@/helpers/authHelper';
 import { getLocalStorage, setLocalStorage } from '@/hooks/useLocalStorage';
 
 export const HobbySelect = () => {

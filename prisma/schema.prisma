@@ -37,7 +37,10 @@ model User {
   image           String?
   role            String?     @default("user")
   hobby           String?
+  instagram       String?
+  telegram        String?
   createdAt       DateTime    @default(now())
+  isDeleted       Boolean?
   Account         Account[]
   Session         Session[]
   @@map("User")

@@ -66,7 +66,11 @@ const NavMenu = () => {
             display: { xs: 'block', md: 'none' },
           }}>
           {navItems.map(page => (
-            <MenuItem key={page.href} component={Link} href={page.href} onClick={handleCloseNavMenu}>
+            <MenuItem
+              key={page.href}
+              component={Link}
+              href={page.href}
+              onClick={handleCloseNavMenu}>
               <Typography textAlign="center">{page.label}</Typography>
             </MenuItem>
           ))}

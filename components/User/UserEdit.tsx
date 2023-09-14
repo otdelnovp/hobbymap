@@ -23,7 +23,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { isUserRoot, type User } from '@/helpers/authHelper';
 
 export const UserEdit = ({ userItem }: { userItem: User }) => {
-  const session = useSession();
+  const { data: session, update } = useSession();
   const router = useRouter();
 
   const [open, setOpen] = useState(false);
@@ -37,7 +37,18 @@ export const UserEdit = ({ userItem }: { userItem: User }) => {
   const [body, setBody] = useState({ ...userItem });
   const handleFieldChange = (e: any) => {
     const { name, value, checked } = e.target;
-    setBody(prevBody => ({ ...prevBody, [name]: name === 'role' ? (checked ? 'admin' : 'user') : value }));
+    setBody(prevBody => ({
+      ...prevBody,
+      [name]: name === 'role' ? (checked ? 'admin' : 'user') : value,
+    }));
+  };
+
+  const updateSession = async () => {
+    await update({
+      ...session,
+      user: { ...body },
+    });
+    router.refresh();
   };
 
   const onSave = () => {
@@ -50,6 +61,7 @@ export const UserEdit = ({ userItem }: { userItem: User }) => {
         console.log(err);
       })
       .finally(() => {
+        if (session?.user?.id === body.id) updateSession();
         handleCloseDialog();
         router.refresh();
       });
@@ -66,16 +78,57 @@ export const UserEdit = ({ userItem }: { userItem: User }) => {
           <DialogContentText sx={{ mb: 3 }}>User card information</DialogContentText>
           <Grid container spacing={2} component="form">
             <Grid item xs={12}>
-              <TextField name="name" label="Name" fullWidth variant="outlined" value={body.name} onChange={handleFieldChange} />
+              <TextField
+                name="name"
+                label="Name"
+                fullWidth
+                variant="outlined"
+                value={body.name}
+                onChange={handleFieldChange}
+              />
             </Grid>
             <Grid item xs={12}>
-              <TextField name="email" label="Email" type="email" fullWidth variant="outlined" disabled value={body.email} />
+              <TextField
+                name="email"
+                label="Email"
+                type="email"
+                fullWidth
+                variant="outlined"
+                disabled
+                value={body.email}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                name="instagram"
+                label="Your instagram nik"
+                fullWidth
+                variant="outlined"
+                value={body.instagram}
+                onChange={handleFieldChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                name="telegram"
+                label="Your telegram nik"
+                fullWidth
+                variant="outlined"
+                value={body.telegram}
+                onChange={handleFieldChange}
+              />
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Switch checked={body.role === 'admin'} name="role" onChange={handleFieldChange} />}
+                control={
+                  <Switch
+                    checked={body.role === 'admin' || body.role === 'root'}
+                    name="role"
+                    onChange={handleFieldChange}
+                  />
+                }
                 label="Is user admin"
-                disabled={!isUserRoot(session?.data?.user)}
+                disabled={!isUserRoot(session?.user)}
               />
             </Grid>
           </Grid>

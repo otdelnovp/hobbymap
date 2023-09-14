@@ -1,9 +1,5 @@
 export type UserRole = 'root' | 'admin' | 'user';
-export type UserHobby = 'drone' | 'car';
-export const hobbyTypes = [
-  { name: 'FPV drone', value: 'drone' },
-  { name: 'RC car', value: 'car' },
-];
+export type UserHobby = 'drone' | 'car' | 'airplane';
 
 export type User =
   | {
@@ -13,7 +9,10 @@ export type User =
       image?: string | null;
       role?: UserRole | null;
       hobby?: UserHobby | null;
+      instagram?: string;
+      telegram?: string;
       createdAt?: string;
+      isDeleted?: boolean;
     }
   | undefined;
 

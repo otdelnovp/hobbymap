@@ -17,6 +17,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PlaceIcon from '@mui/icons-material/Place';
 import PeopleIcon from '@mui/icons-material/People';
@@ -28,7 +29,7 @@ const UserMenu = ({ user }: { user: User }) => {
   const getUserMenu = useCallback(
     (user: User) => {
       let options = [
-        { icon: <SettingsIcon />, label: 'Profile', href: '/lk/profile' },
+        { icon: <AccountBoxIcon />, label: 'Profile', href: '/lk/profile' },
         { icon: <PlaceIcon />, label: 'My locations', href: '/lk/locations' },
       ];
       if (isUserAdmin(user)) {
@@ -71,7 +72,11 @@ const UserMenu = ({ user }: { user: User }) => {
         open={Boolean(anchorElUserMenu)}
         onClose={handleCloseUserMenu}>
         {getUserMenu(user).map(menuItem => (
-          <MenuItem key={menuItem.href} component={Link} href={menuItem.href} onClick={handleCloseUserMenu}>
+          <MenuItem
+            key={menuItem.href}
+            component={Link}
+            href={menuItem.href}
+            onClick={handleCloseUserMenu}>
             {menuItem.icon ? <ListItemIcon>{menuItem.icon}</ListItemIcon> : null}
             <Typography textAlign="center">{menuItem.label}</Typography>
           </MenuItem>

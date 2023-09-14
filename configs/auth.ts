@@ -47,11 +47,16 @@ export const authConfig: AuthOptions = {
     strategy: 'jwt',
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session }) {
       // Persist the OAuth access_token and or the user id to the token right after signin
       if (user) {
         token.accessToken = user.access_token;
         token.user = user;
+      }
+      if (trigger === 'update') {
+        token.accessToken = session.accessToken;
+        token.user = session.user;
+        return token;
       }
       return token;
     },

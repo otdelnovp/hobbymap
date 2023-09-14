@@ -13,7 +13,10 @@ import { UserEdit } from '@/components/User/UserEdit';
 
 export const UserList = ({ user, userList }: { user: User; userList: User[] }) => {
   const userTemplate = (userItem: User) => (
-    <ListItem alignItems="flex-start" key={userItem?.id} secondaryAction={isUserRoot(user) && <UserEdit userItem={userItem} />}>
+    <ListItem
+      alignItems="flex-start"
+      key={userItem?.id}
+      secondaryAction={isUserRoot(user) && <UserEdit userItem={userItem} />}>
       <ListItemAvatar>
         <Avatar alt={userItem?.name} src={userItem?.image ?? undefined} />
       </ListItemAvatar>
@@ -28,6 +31,26 @@ export const UserList = ({ user, userList }: { user: User; userList: User[] }) =
         </Box>
         <Typography component="div" variant="caption" color="gray">
           {userItem?.email}
+          {userItem?.instagram ? (
+            <Box>
+              <a
+                target="_blank"
+                href={`https://instagram.com/${userItem?.instagram}/`}
+                rel="noopener noreferrer">
+                instagram.com/{userItem?.instagram}
+              </a>{' '}
+            </Box>
+          ) : null}
+          {userItem?.telegram ? (
+            <Box>
+              <a
+                target="_blank"
+                href={`https://t.me/${userItem?.telegram}/`}
+                rel="noopener noreferrer">
+                t.me/{userItem?.telegram}
+              </a>{' '}
+            </Box>
+          ) : null}
           <Box>{getDateStr(userItem?.createdAt)}</Box>
         </Typography>
       </ListItemText>

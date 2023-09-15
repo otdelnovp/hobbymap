@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <Container maxWidth="sm">
-      <Paper sx={{ my: 5, pt: 4, pb: 3, px: 2 }}>{children}</Paper>
+      <Paper sx={{ my: 5, pt: 4, pb: 3, px: 4 }}>{children}</Paper>
     </Container>
   );
 }

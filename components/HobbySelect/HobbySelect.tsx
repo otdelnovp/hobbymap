@@ -10,11 +10,10 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import OutlinedInput from '@mui/material/OutlinedInput';
 // import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import { hobbyTypes } from '@/helpers/dictionaryHelper';
 import { getLocalStorage, setLocalStorage } from '@/hooks/useLocalStorage';
@@ -79,7 +78,6 @@ export const HobbySelect = () => {
           id="demo-multiple-checkbox"
           value={hobbyType}
           onChange={handleChange}
-          input={<OutlinedInput />}
           fullWidth>
           {hobbyTypes.map(hobbyTypeItem => (
             <MenuItem key={hobbyTypeItem.value} value={hobbyTypeItem.value}>

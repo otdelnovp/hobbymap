@@ -57,5 +57,5 @@ export const UserList = ({ user, userList }: { user: User; userList: User[] }) =
     </ListItem>
   );
 
-  return userList ? <List>{userList?.map(userItem => userTemplate(userItem))}</List> : null;
+  return userList?.length ? <List>{userList?.map(userItem => userTemplate(userItem))}</List> : null;
 };

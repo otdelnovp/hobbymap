@@ -17,7 +17,7 @@ export default async function Profile() {
 
   return (
     <>
-      <Typography component="h1" variant="h3" sx={{ px: 2 }}>
+      <Typography component="h1" variant="h3">
         Profile
       </Typography>
       <ListItem alignItems="flex-start" secondaryAction={<UserEdit userItem={session?.user} />}>

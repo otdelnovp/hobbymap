@@ -16,7 +16,7 @@ export default async function Users() {
 
   return (
     <>
-      <Typography component="h1" variant="h3" sx={{ px: 2 }}>
+      <Typography component="h1" variant="h3">
         User list
       </Typography>
       <UserList user={session?.user} userList={users} />

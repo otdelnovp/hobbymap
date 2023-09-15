@@ -7,6 +7,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
+// NEXT-AUTH
+
 model Account {
   id                 String  @id @default(auto()) @map("_id") @db.ObjectId
   userId             String  @db.ObjectId
@@ -43,9 +46,10 @@ model User {
   isDeleted       Boolean?
   Account         Account[]
   Session         Session[]
+  Location        Location[]
   @@map("User")
 }
- 
+
 model Session {
   id              String      @id @default(auto()) @map("_id") @db.ObjectId
   sessionToken    String      @unique
@@ -53,4 +57,20 @@ model Session {
   expires         DateTime    @map("expiresAt")
   user            User        @relation(fields: [userId], references: [id])
   @@map("Session")
+}
+
+
+// LOCATIONS
+
+model Location {
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
+  title           String
+  description     String
+  latitude        Float
+  longitude       Float
+  hobby           String
+  createdAt       DateTime    @default(now())
+  userId          String      @db.ObjectId
+  user            User        @relation(fields: [userId], references: [id])
+  @@map("Location")
 }

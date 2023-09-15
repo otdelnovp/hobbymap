@@ -10,7 +10,7 @@ import 'leaflet/dist/leaflet.css';
 import { usePosition } from '@/hooks/usePosition';
 import { getLocalStorage } from '@/hooks/useLocalStorage';
 
-function Map({ children }: { children?: React.ReactNode }) {
+function Map({ children = null }: { children?: React.ReactNode }) {
   const map = useMap();
   const { latitude, longitude, error } = usePosition();
 
@@ -20,7 +20,7 @@ function Map({ children }: { children?: React.ReactNode }) {
     }
   }, [latitude, longitude]);
 
-  return children || null;
+  return children;
 }
 
 export default function MapBox() {

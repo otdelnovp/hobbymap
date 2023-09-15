@@ -35,8 +35,10 @@ export const UserEdit = ({ userItem }: { userItem: User }) => {
   };
 
   const [body, setBody] = useState({ ...userItem });
-  const handleFieldChange = (e: any) => {
-    const { name, value, checked } = e.target;
+  const handleFieldChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | any,
+  ) => {
+    const { name, value, checked } = event.target;
     setBody(prevBody => ({
       ...prevBody,
       [name]: name === 'role' ? (checked ? 'admin' : 'user') : value,
@@ -81,41 +83,41 @@ export const UserEdit = ({ userItem }: { userItem: User }) => {
               <TextField
                 name="name"
                 label="Name"
-                fullWidth
-                variant="outlined"
                 value={body.name}
                 onChange={handleFieldChange}
+                variant="outlined"
+                fullWidth
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
+                disabled
                 name="email"
                 label="Email"
                 type="email"
-                fullWidth
-                variant="outlined"
-                disabled
                 value={body.email}
+                variant="outlined"
+                fullWidth
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 name="instagram"
                 label="Your instagram nik"
-                fullWidth
-                variant="outlined"
                 value={body.instagram}
                 onChange={handleFieldChange}
+                variant="outlined"
+                fullWidth
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 name="telegram"
                 label="Your telegram nik"
-                fullWidth
-                variant="outlined"
                 value={body.telegram}
                 onChange={handleFieldChange}
+                variant="outlined"
+                fullWidth
               />
             </Grid>
             <Grid item xs={12}>
@@ -134,7 +136,7 @@ export const UserEdit = ({ userItem }: { userItem: User }) => {
             Cancel
           </Button>
           <Button variant="contained" color="primary" onClick={onSave}>
-            Save
+            Save user
           </Button>
         </DialogActions>
       </Dialog>

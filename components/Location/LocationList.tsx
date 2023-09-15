@@ -22,18 +22,23 @@ export const LocationList = ({
   const locationTemplate = (locationItem: LocationType) => (
     <ListItem
       alignItems="flex-start"
-      key={locationItem?.id}
+      key={locationItem.id}
       secondaryAction={<LocationEdit user={user} locationItem={locationItem} />}>
       <ListItemIcon>
         <PlaceIcon fontSize="large" />
       </ListItemIcon>
       <ListItemText>
-        {locationItem?.title}
+        {locationItem.title}
         <Typography component="div" variant="body2">
-          {locationItem?.description}
+          {locationItem.description}
         </Typography>
         <Typography component="div" variant="caption" color="gray">
-          {locationItem?.latitude}:{locationItem.longitude}
+          <a
+            href={`https://maps.google.com?saddr=Current+Location&daddr=${locationItem.latitude},${locationItem.longitude}`}
+            target="_blank"
+            rel="noopener noreferrer">
+            построить маршрут
+          </a>
           <Box>{locationItem.hobby}</Box>
           <Box>автор: {locationItem?.userId}</Box>
           <Box>добавлена: {getDateStr(locationItem?.createdAt)}</Box>

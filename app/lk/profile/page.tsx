@@ -38,8 +38,8 @@ export default async function Profile() {
             {session?.user?.instagram ? (
               <Box>
                 <a
-                  target="_blank"
                   href={`https://instagram.com/${session?.user?.instagram}/`}
+                  target="_blank"
                   rel="noopener noreferrer">
                   instagram.com/{session?.user?.instagram}
                 </a>{' '}
@@ -50,8 +50,8 @@ export default async function Profile() {
             {session?.user?.telegram ? (
               <Box>
                 <a
-                  target="_blank"
                   href={`https://t.me/${session?.user?.telegram}/`}
+                  target="_blank"
                   rel="noopener noreferrer">
                   t.me/{session?.user?.telegram}
                 </a>{' '}

@@ -34,8 +34,8 @@ export const UserList = ({ user, userList }: { user: User; userList: User[] }) =
           {userItem?.instagram ? (
             <Box>
               <a
-                target="_blank"
                 href={`https://instagram.com/${userItem?.instagram}/`}
+                target="_blank"
                 rel="noopener noreferrer">
                 instagram.com/{userItem?.instagram}
               </a>{' '}
@@ -44,8 +44,8 @@ export const UserList = ({ user, userList }: { user: User; userList: User[] }) =
           {userItem?.telegram ? (
             <Box>
               <a
-                target="_blank"
                 href={`https://t.me/${userItem?.telegram}/`}
+                target="_blank"
                 rel="noopener noreferrer">
                 t.me/{userItem?.telegram}
               </a>{' '}

@@ -13,7 +13,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           flexGrow: 1,
           position: 'relative',
           bgcolor: 'background.default',
-          mt: ['56px', '56px', '64px'],
+          mt: ['56px', '64px', '64px'],
         }}>
         {children}
       </Box>

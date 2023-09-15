@@ -20,7 +20,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-import { isUserRoot, type User } from '@/helpers/authHelper';
+import { isUserAdmin, isUserRoot, type User } from '@/helpers/authHelper';
 
 export const UserEdit = ({ userItem }: { userItem: User }) => {
   const { data: session, update } = useSession();
@@ -121,11 +121,7 @@ export const UserEdit = ({ userItem }: { userItem: User }) => {
             <Grid item xs={12}>
               <FormControlLabel
                 control={
-                  <Switch
-                    checked={body.role === 'admin' || body.role === 'root'}
-                    name="role"
-                    onChange={handleFieldChange}
-                  />
+                  <Switch checked={isUserAdmin(body)} name="role" onChange={handleFieldChange} />
                 }
                 label="Is user admin"
                 disabled={!isUserRoot(session?.user)}

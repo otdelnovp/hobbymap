@@ -1,19 +1,25 @@
 import { useState, useEffect } from 'react';
+import { setLocalStorage } from './useLocalStorage';
+
+type Coord = {
+  latitude: number;
+  longitude: number;
+};
+
 export const usePosition = () => {
-  const [position, setPosition] = useState<{
-    latitude: number;
-    longitude: number;
-  }>();
+  const [position, setPosition] = useState<Coord>();
+
   const [error, setError] = useState<null | string>(null);
 
-  const onChange = ({ coords }: { coords: any }) => {
+  const onChange = ({ coords }: { coords: GeolocationCoordinates }) => {
     setPosition({
       latitude: coords.latitude,
       longitude: coords.longitude,
     });
+    setLocalStorage('geolocation', [coords.latitude, coords.longitude]);
   };
 
-  const onError = (error: any) => {
+  const onError = (error: GeolocationPositionError) => {
     setError(error.message);
   };
 

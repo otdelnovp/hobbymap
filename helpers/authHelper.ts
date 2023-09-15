@@ -3,9 +3,9 @@ export type UserHobby = 'drone' | 'car' | 'airplane';
 
 export type User =
   | {
-      id: string;
-      name: string;
-      email: string;
+      id?: string;
+      name?: string;
+      email?: string;
       image?: string | null;
       role?: UserRole | null;
       hobby?: UserHobby | null;

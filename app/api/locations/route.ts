@@ -12,10 +12,19 @@ export const GET = async () => {
         latitude: true,
         longitude: true,
         hobby: true,
-        userId: true,
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            instagram: true,
+            telegram: true,
+          },
+        },
         createdAt: true,
       },
     });
+    console.log(locations);
     return NextResponse.json(locations);
   } catch (err) {
     return NextResponse.json({ message: 'GET Error', err }, { status: 500 });

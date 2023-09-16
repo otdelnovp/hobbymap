@@ -8,6 +8,13 @@ export type LocationType = {
   longitude?: number;
   hobby?: UserHobby;
   userId?: string;
+  user?: {
+    id: string;
+    name: string;
+    email: string;
+    instagram: string;
+    telegram: string;
+  };
   createdAt?: string;
   isDeleted?: boolean;
 };

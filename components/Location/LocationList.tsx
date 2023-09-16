@@ -40,7 +40,10 @@ export const LocationList = ({
             построить маршрут
           </a>
           <Box>{locationItem.hobby}</Box>
-          <Box>автор: {locationItem?.userId}</Box>
+          <Box>
+            автор:{' '}
+            {locationItem.user?.instagram || locationItem.user?.telegram || locationItem.user?.name}
+          </Box>
           <Box>добавлена: {getDateStr(locationItem?.createdAt)}</Box>
         </Typography>
       </ListItemText>

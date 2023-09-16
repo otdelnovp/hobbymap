@@ -13,7 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import NavigationIcon from '@mui/icons-material/Navigation';
 
 const navItems = [
-  { label: 'Home', href: '/' },
+  { label: 'Map', href: '/' },
   { label: 'About', href: '/about' },
 ];
 

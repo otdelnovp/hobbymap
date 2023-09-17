@@ -1,3 +1,5 @@
+import { NextResponse } from 'next/server';
+
 export const getServerSideData = async ({
   url,
   id,
@@ -8,6 +10,6 @@ export const getServerSideData = async ({
   cache?: RequestCache;
 }) => {
   const res = await fetch(process.env.NEXTAUTH_URL + (id ? `${url}/${id}` : url), { cache });
-  if (!res.ok) throw new Error('Failed to fetch data');
+  if (!res?.ok) NextResponse.json({ message: 'Failed' }, { status: 500 });
   return res.json();
 };

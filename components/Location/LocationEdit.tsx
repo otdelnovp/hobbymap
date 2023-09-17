@@ -79,8 +79,8 @@ export const LocationEdit = ({
           Add location
         </Button>
       ) : (
-        <IconButton aria-label="edit">
-          <EditIcon sx={{ opacity: 0.5 }} onClick={handleOpenDialog} />
+        <IconButton aria-label="edit" onClick={handleOpenDialog}>
+          <EditIcon sx={{ opacity: 0.5 }} />
         </IconButton>
       )}
       <Dialog open={open} fullWidth={true} maxWidth="sm" onClose={handleCloseDialog}>

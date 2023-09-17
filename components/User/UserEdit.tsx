@@ -71,8 +71,8 @@ export const UserEdit = ({ userItem }: { userItem: User }) => {
 
   return (
     <>
-      <IconButton aria-label="edit">
-        <EditIcon sx={{ opacity: 0.5 }} onClick={handleOpenDialog} />
+      <IconButton aria-label="edit" onClick={handleOpenDialog}>
+        <EditIcon sx={{ opacity: 0.5 }} />
       </IconButton>
       <Dialog open={open} fullWidth={true} maxWidth="sm" onClose={handleCloseDialog}>
         <DialogTitle>Edit user</DialogTitle>

@@ -24,8 +24,6 @@ import PeopleIcon from '@mui/icons-material/People';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const UserMenu = ({ user }: { user: User }) => {
-  console.log(user);
-
   const getUserMenu = useCallback(
     (user: User) => {
       let options = [

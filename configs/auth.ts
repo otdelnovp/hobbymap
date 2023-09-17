@@ -1,5 +1,5 @@
 // @ts-nocheck
-import type { AuthOptions, User } from 'next-auth';
+import type { NextAuthOptions, User } from 'next-auth';
 import GoggleProvider from 'next-auth/providers/google';
 import FacebookProvider from 'next-auth/providers/facebook';
 
@@ -9,7 +9,7 @@ import prisma from '@/prisma';
 // import Credentials from 'next-auth/providers/credentials';
 // import { users } from '@/data/users';
 
-export const authConfig: AuthOptions = {
+export const authConfig: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     GoggleProvider({
@@ -50,21 +50,21 @@ export const authConfig: AuthOptions = {
     async jwt({ token, user, trigger, session }) {
       // Persist the OAuth access_token and or the user id to the token right after signin
       if (user) {
-        token.accessToken = user.access_token;
+        // token.accessToken = user.access_token;
         token.user = user;
       }
       if (trigger === 'update') {
-        token.accessToken = session.accessToken;
-        token.user = session.user;
-        return token;
+        return { ...token, accessToken: session.accessToken, user: session.user };
       }
       return token;
     },
     async session({ session, token }) {
       // Send properties to the client, like an access_token and user id from a provider.
-      session.accessToken = token.accessToken;
-      session.user = token.user;
-      return session;
+      return {
+        ...session,
+        user: token.user,
+        accessToken: token.accessToken,
+      };
     },
   },
   // debug: process.env.NODE_ENV === 'development',

@@ -3,7 +3,7 @@ import type { NextAuthOptions, User } from 'next-auth';
 import GoggleProvider from 'next-auth/providers/google';
 import FacebookProvider from 'next-auth/providers/facebook';
 
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import { PrismaAdapter } from '@auth/prisma-adapter';
 import prisma from '@/prisma';
 
 // import Credentials from 'next-auth/providers/credentials';
@@ -13,8 +13,8 @@ export const authConfig: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     GoggleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_SECRET!,
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_SECRET,
     }),
     FacebookProvider({
       clientId: process.env.FACEBOOK_CLIENT_ID!,

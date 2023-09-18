@@ -3,10 +3,10 @@
 import { SessionProvider } from 'next-auth/react';
 import { MuiProvider } from '@/components/MuiProvider/MuiProvider';
 
-export const Providers = ({ session, children }: { session: any; children: React.ReactNode }) => {
+export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <MuiProvider>
-      <SessionProvider session={session}>{children}</SessionProvider>
+      <SessionProvider>{children}</SessionProvider>
     </MuiProvider>
   );
 };

@@ -1,6 +1,11 @@
+import type { Metadata } from 'next';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+
+export const metadata: Metadata = {
+  title: 'Hobby Map: About',
+};
 
 export default function About() {
   return (

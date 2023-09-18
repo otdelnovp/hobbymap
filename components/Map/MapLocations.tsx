@@ -6,7 +6,7 @@ import { LocationType } from '@/helpers/locationHelper';
 
 import { MapPoint } from '@/components/Map/MapPoint';
 
-const Map = dynamic(() => import('@/components/Map/Map'), {
+const MapContainer = dynamic(() => import('@/components/Map/MapContainer'), {
   loading: () => <Loader />,
   ssr: false,
 });
@@ -18,12 +18,11 @@ export const MapLocations = ({
   user: User;
   locationList: LocationType[];
 }) => {
-  console.log(locationList);
   return locationList ? (
-    <Map>
+    <MapContainer>
       {locationList.map(locationItem => (
         <MapPoint locationItem={locationItem} />
       ))}
-    </Map>
+    </MapContainer>
   ) : null;
 };

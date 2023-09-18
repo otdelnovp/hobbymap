@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { getServerSession } from 'next-auth/next';
 import { authConfig } from '@/configs/auth';
 
@@ -7,6 +8,10 @@ import { getServerSideData } from '@/instance/fetch';
 import { type User, isUserAdmin } from '@/helpers/authHelper';
 
 import { UserList } from '@/components/User/UserList';
+
+export const metadata: Metadata = {
+  title: 'Hobby Map: User list',
+};
 
 export default async function Users() {
   const session = await getServerSession(authConfig);

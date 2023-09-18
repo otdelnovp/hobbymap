@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { getServerSession } from 'next-auth/next';
 import { authConfig } from '@/configs/auth';
 
@@ -11,6 +12,10 @@ import Avatar from '@mui/material/Avatar';
 import { UserEdit } from '@/components/User/UserEdit';
 
 import { getDateStr } from '@/helpers/dateHelper';
+
+export const metadata: Metadata = {
+  title: 'Hobby Map: Profile',
+};
 
 export default async function Profile() {
   const session = await getServerSession(authConfig);

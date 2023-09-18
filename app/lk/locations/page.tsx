@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { getServerSession } from 'next-auth/next';
 import { authConfig } from '@/configs/auth';
 
@@ -7,6 +8,10 @@ import { LocationType } from '@/helpers/locationHelper';
 import { getServerSideData } from '@/instance/fetch';
 
 import { LocationList } from '@/components/Location/LocationList';
+
+export const metadata: Metadata = {
+  title: 'Hobby Map: My locations',
+};
 
 export default async function Locations() {
   const session = await getServerSession(authConfig);

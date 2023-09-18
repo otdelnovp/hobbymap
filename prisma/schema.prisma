@@ -16,12 +16,12 @@ model Account {
   type               String
   provider           String
   providerAccountId  String
-  refresh_token      String?
-  access_token       String?
+  refresh_token      String? @db.String
+  access_token       String? @db.String
   expires_at         Int?
   token_type         String?
   scope              String?
-  id_token           String?
+  id_token           String? @db.String
   session_state      String?
   oauth_token_secret String?
   oauth_token        String?
@@ -29,6 +29,17 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
+  sessionToken    String      @unique
+  userId          String      @db.ObjectId
+  expires         DateTime    @map("expiresAt")
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
 }
 
 model User {
@@ -47,16 +58,18 @@ model User {
   Account         Account[]
   Session         Session[]
   Location        Location[]
-  @@map("User")
+
+  @@map("users")
 }
 
-model Session {
-  id              String      @id @default(auto()) @map("_id") @db.ObjectId
-  sessionToken    String      @unique
-  userId          String      @db.ObjectId
-  expires         DateTime    @map("expiresAt")
-  user            User        @relation(fields: [userId], references: [id])
-  @@map("Session")
+model VerificationToken {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  identifier  String
+  token       String    @unique
+  expires     DateTime
+  
+  @@unique([identifier, token])
+  @@map("verificationtokens")
 }
 
 
@@ -72,5 +85,6 @@ model Location {
   createdAt       DateTime    @default(now())
   userId          String      @db.ObjectId
   user            User        @relation(fields: [userId], references: [id])
-  @@map("Location")
+
+  @@map("locations")
 }

@@ -1,5 +1,5 @@
 import { cookies, headers } from 'next/headers';
-import { getServerSession as originalGetServerSession } from 'next-auth';
+import { getServerSession as originalGetServerSession } from 'next-auth/next';
 import { authConfig } from '@/configs/auth';
 
 export const getServerSession = async () => {

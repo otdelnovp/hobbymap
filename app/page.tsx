@@ -1,11 +1,17 @@
-import dynamic from 'next/dynamic';
-import { Loader } from '@/components/Loader/Loader';
+import { getServerSession } from 'next-auth/next';
+import { authConfig } from '@/configs/auth';
 
-const Map = dynamic(() => import('@/components/Map/Map'), {
-  loading: () => <Loader />,
-  ssr: false,
-});
+import { MapLocations } from '@/components/Map/MapLocations';
 
-export default function Home() {
-  return <Map />;
+import { LocationType } from '@/helpers/locationHelper';
+import { getServerSideData } from '@/instance/fetch';
+
+export default async function Home() {
+  const session = await getServerSession(authConfig);
+
+  const locations: LocationType[] = await getServerSideData({
+    url: '/api/locations',
+    cache: 'no-store',
+  });
+  return <MapLocations user={session?.user} locationList={locations} />;
 }

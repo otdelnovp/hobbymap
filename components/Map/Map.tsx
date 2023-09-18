@@ -23,7 +23,7 @@ function Map({ children = null }: { children?: React.ReactNode }) {
   return children;
 }
 
-export default function MapBox() {
+export default function MapBox({ children = null }: { children?: React.ReactNode }) {
   return (
     <MapContainer
       center={getLocalStorage('geolocation') || [59.93863, 30.31413]}
@@ -33,7 +33,7 @@ export default function MapBox() {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Map />
+      <Map>{children}</Map>
     </MapContainer>
   );
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { getServerSession } from 'next-auth/next';
-import { authConfig } from '@/configs/auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 import Typography from '@mui/material/Typography';
 
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Users() {
-  const session = await getServerSession(authConfig);
+  const session = await getServerSession(authOptions);
   if (!isUserAdmin(session?.user)) return null;
 
   const users: User[] = await getServerSideData({ url: '/api/users', cache: 'no-store' });

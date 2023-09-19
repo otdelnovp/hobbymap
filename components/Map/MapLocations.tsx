@@ -1,28 +1,23 @@
-import dynamic from 'next/dynamic';
-import { Loader } from '@/components/Loader/Loader';
+'use client';
 
 import { User } from '@/helpers/authHelper';
 import { LocationType } from '@/helpers/locationHelper';
 
+import MapWrapper from '@/components/Map/MapWrapper';
 import { MapPoint } from '@/components/Map/MapPoint';
 
-const MapContainer = dynamic(() => import('@/components/Map/MapContainer'), {
-  loading: () => <Loader />,
-  ssr: false,
-});
-
-export const MapLocations = ({
+export default function MapLocations({
   user,
   locationList,
 }: {
   user: User;
   locationList: LocationType[];
-}) => {
-  return locationList ? (
-    <MapContainer>
-      {locationList.map(locationItem => (
-        <MapPoint locationItem={locationItem} />
-      ))}
-    </MapContainer>
-  ) : null;
-};
+}) {
+  return (
+    <MapWrapper>
+      {locationList?.length
+        ? locationList.map(locationItem => <MapPoint locationItem={locationItem} />)
+        : null}
+    </MapWrapper>
+  );
+}

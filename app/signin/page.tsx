@@ -10,7 +10,7 @@ import { GoogleButton } from '@/components/AuthProviders/GoogleButton';
 import { FacebookButton } from '@/components/AuthProviders/FacebookButton';
 
 export const metadata: Metadata = {
-  title: 'Hobby Map: Login',
+  title: 'Hobby Map: Sign in',
 };
 
 export default async function Signin() {

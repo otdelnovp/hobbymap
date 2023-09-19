@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,10 +10,8 @@ import NavigationIcon from '@mui/icons-material/Navigation';
 import { NavMenu } from './NavMenu';
 import { UserMenu } from './UserMenu';
 
-import { authConfig } from '@/configs/auth';
-
 const Header = async () => {
-  const session = await getServerSession(authConfig);
+  const session = await getServerSession(authOptions);
 
   return (
     <AppBar position="fixed" sx={{ zIndex: 999 }}>

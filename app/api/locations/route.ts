@@ -1,12 +1,14 @@
 import prisma from '@/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 
+// import { getServerSession } from '@/helpers/getServerSessionHelper';
 import { getServerSession } from 'next-auth/next';
-import { authConfig } from '@/configs/auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 export const GET = async () => {
-  const session = await getServerSession(authConfig);
-  console.log(session);
+  // const session = await getServerSession();
+  const session = await getServerSession(authOptions);
+  console.log('API Session', session);
 
   try {
     const locations = await prisma.location.findMany({

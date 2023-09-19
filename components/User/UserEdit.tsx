@@ -136,7 +136,7 @@ export const UserEdit = ({ userItem }: { userItem: User }) => {
             Cancel
           </Button>
           <Button variant="contained" color="primary" onClick={onSave}>
-            Save user
+            Save profile
           </Button>
         </DialogActions>
       </Dialog>

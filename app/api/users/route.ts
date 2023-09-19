@@ -1,13 +1,13 @@
 import prisma from '@/prisma';
 import { getServerSession } from 'next-auth/next';
 import { NextRequest, NextResponse } from 'next/server';
-import { authConfig } from '@/configs/auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 // import { getServerSession } from '@/helpers/getServerSessionHelper';
 
 export const GET = async (req: NextRequest, res: NextResponse) => {
   // const session = await getServerSession();
-  const session = await getServerSession(authConfig);
+  const session = await getServerSession(authOptions);
   console.log(session);
 
   try {

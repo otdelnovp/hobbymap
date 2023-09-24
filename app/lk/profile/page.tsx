@@ -21,6 +21,8 @@ export const metadata: Metadata = {
 export default async function Profile() {
   const session = await getServerSession(authOptions);
 
+  // console.log('profile', session);
+
   return (
     <>
       <Typography component="h1" variant="h3">

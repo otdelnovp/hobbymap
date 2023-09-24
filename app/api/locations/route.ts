@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
-export const GET = async () => {
+export async function GET() {
   // const session = await getServerSession();
   const session = await getServerSession(authOptions);
   console.log('API Session', session);
@@ -36,9 +36,9 @@ export const GET = async () => {
   } catch (err) {
     return NextResponse.json({ message: 'GET Error', err }, { status: 500 });
   }
-};
+}
 
-export const POST = async (request: NextRequest) => {
+export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { title, description, latitude, longitude, hobby, userId } = body;
@@ -58,4 +58,4 @@ export const POST = async (request: NextRequest) => {
   } catch (err) {
     return NextResponse.json({ message: 'POST Error', err }, { status: 500 });
   }
-};
+}

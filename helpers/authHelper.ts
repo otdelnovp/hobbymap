@@ -13,6 +13,7 @@ export type User =
       telegram?: string;
       createdAt?: string;
       isDeleted?: boolean;
+      accessToken?: string;
     }
   | undefined;
 

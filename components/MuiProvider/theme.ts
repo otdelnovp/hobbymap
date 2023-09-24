@@ -24,6 +24,15 @@ const theme = createTheme({
     },
   },
   components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        a: {
+          color: '#1C5BA4',
+          textDecoration: 'none',
+          transition: 'background 300ms, color 300ms, opacity 300ms, border 300ms',
+        },
+      },
+    },
     MuiAppBar: {
       styleOverrides: {
         root: {

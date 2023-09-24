@@ -23,25 +23,25 @@ export const authOptions: NextAuthOptions = {
     strategy: 'jwt',
   },
   callbacks: {
+    async jwt({ token, user, trigger, session }) {
+      if (trigger === 'update') {
+        return { ...token, ...session.user };
+      }
+      if (typeof user !== 'undefined') {
+        return { ...token, ...user };
+      }
+      return { ...token };
+    },
     async session({ session, token }) {
       if (token)
         return {
           ...session,
-          user: token.user,
-          accessToken: token.accessToken,
+          user: token as any,
         };
       return session;
     },
-    async jwt({ token, user, trigger, session }) {
-      if (trigger === 'update') {
-        return { ...token, accessToken: session.accessToken, user: session.user };
-      }
-      if (typeof user !== 'undefined') {
-        return { ...token, user: user };
-      }
-      return token;
-    },
   },
+  secret: process.env.NEXTAUTH_SECRET,
   // debug: process.env.NODE_ENV === 'development',
 };
 

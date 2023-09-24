@@ -20,6 +20,7 @@
     "@prisma/client": "^5.3.1",
     "axios": "^1.5.0",
     "eslint-plugin-react-hooks": "^5.0.0-canary-bbc8530ed-20230912",
+    "jsonwebtoken": "^9.0.2",
     "leaflet": "^1.9.4",
     "mongodb": "^6.1.0",
     "next": "^13.5.1",
@@ -29,6 +30,7 @@
     "react-leaflet": "^4.2.1"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.3",
     "@types/leaflet": "^1.9.4",
     "@types/node": "^20.6.3",
     "@types/react": "^18.2.22",

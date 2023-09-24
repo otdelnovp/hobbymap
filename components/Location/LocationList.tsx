@@ -37,14 +37,14 @@ export const LocationList = ({
             href={`https://maps.google.com?saddr=Current+Location&daddr=${locationItem.latitude},${locationItem.longitude}`}
             target="_blank"
             rel="noopener noreferrer">
-            построить маршрут
+            build a route &rarr;
           </a>
           <Box>{locationItem.hobby}</Box>
           <Box>
-            автор:{' '}
+            author:{' '}
             {locationItem.user?.instagram || locationItem.user?.telegram || locationItem.user?.name}
           </Box>
-          <Box>добавлена: {getDateStr(locationItem?.createdAt)}</Box>
+          <Box>created date: {getDateStr(locationItem?.createdAt)}</Box>
         </Typography>
       </ListItemText>
     </ListItem>

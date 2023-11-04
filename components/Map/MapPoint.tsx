@@ -11,7 +11,9 @@ import { getDateStr } from '@/helpers/dateHelper';
 export const MapPoint = ({ locationItem }: { locationItem: LocationType }) => {
   return locationItem.latitude && locationItem.longitude ? (
     <Marker position={[locationItem.latitude, locationItem.longitude]} key={locationItem.id}>
-      <Tooltip>{locationItem.title}</Tooltip>
+      <Tooltip direction="top" offset={[-15, -13]}>
+        {locationItem.title}
+      </Tooltip>
       <Popup>
         <Box sx={{ width: 250 }}>
           <Typography component="div" variant="body1">

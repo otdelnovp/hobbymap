@@ -15,6 +15,12 @@ export default function About() {
           About
         </Typography>
         <p>This is helper to find for your hobby locations</p>
+        <p>
+          If you like it, you can{' '}
+          <a href="https://www.buymeacoffee.com/otdelnov" target="_blank" rel="noopener noreferrer">
+            buy me a coffee
+          </a>
+        </p>
       </Paper>
     </Container>
   );

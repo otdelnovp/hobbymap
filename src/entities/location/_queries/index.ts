@@ -13,10 +13,11 @@ export const getLocationsQuery = (userId?: UserId) => ({
 
 export const useInvalidateLocations = () => {
   const queryClient = useQueryClient();
-  return (userId?: UserId) =>
+  return (userId?: UserId) => {
     queryClient.invalidateQueries({
       queryKey: [baseKey, "getLocationsByUserId", userId],
     });
+  };
 };
 
 export const getLocationQuery = (locationId: LocationId) => ({

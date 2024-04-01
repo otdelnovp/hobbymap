@@ -10,6 +10,7 @@ export const useUpdateProfile = () => {
   const { mutateAsync, isPending } = useMutation({
     mutationFn: updateProfileAction,
     async onSuccess({ profile }, { userId }) {
+      console.log(55555, userId);
       await invalidateProfile(userId);
       await updateSession({
         user: profile,

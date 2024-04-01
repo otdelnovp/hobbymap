@@ -27,7 +27,7 @@ export function UpdateProfileForm({
     if (callbackUrl) {
       router.push(callbackUrl);
     } else {
-      router.refresh();
+      // router.refresh();
     }
   };
 

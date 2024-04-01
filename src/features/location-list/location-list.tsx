@@ -20,8 +20,6 @@ export function LocationList({ user }: { user: SharedUser }) {
     return <div>Failed to load locations, you may not have permissions</div>;
   }
 
-  console.log(locationsQuery.data.locations);
-
   return (
     <div className="flex flex-wrap items-stretch -mx-1.5">
       {locationsQuery.data.locations.map((locationItem) => (

@@ -18,6 +18,7 @@ export async function AppHeader({
     <Layout
       logo={<Logo />}
       nav={<MainNav />}
+      navSheet={<MainNav sheet={true} />}
       actions={<Actions session={session} />}
       profile={isProfile && <Profile session={session} />}
     />

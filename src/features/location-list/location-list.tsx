@@ -5,6 +5,7 @@ import { getLocationsQuery } from "@/entities/location/location";
 
 import { SharedUser } from "@/kernel/domain/user";
 import { LocationListItem } from "./_ui/locations-list-item";
+import { LocationListSkeleton } from "./_ui/locations-list-skeleton";
 
 export function LocationList({ user }: { user: SharedUser }) {
   const locationsQuery = useQuery({
@@ -13,7 +14,7 @@ export function LocationList({ user }: { user: SharedUser }) {
   });
 
   if (locationsQuery.isPending) {
-    return <div aria-label="Loading locations">Loading locations...</div>;
+    return <LocationListSkeleton />;
   }
 
   if (!locationsQuery.data) {

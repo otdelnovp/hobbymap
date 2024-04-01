@@ -7,7 +7,7 @@ import { Location, LocationId } from "../_domain/types";
 
 type GetLocation = {
   locationId: LocationId;
-  session: SharedSession;
+  session: SharedSession | null;
 };
 
 export class GetLocationService {

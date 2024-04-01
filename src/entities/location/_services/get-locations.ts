@@ -7,7 +7,7 @@ import { Location } from "../_domain/types";
 
 type GetLocations = {
   userId?: UserId;
-  session: SharedSession;
+  session: SharedSession | null;
 };
 
 export class GetLocationsService {
@@ -19,7 +19,7 @@ export class GetLocationsService {
     }
 
     return await locationRepository.getLocationsByUserId(
-      userId || session.user.id,
+      userId || session?.user.id,
     );
   }
 }

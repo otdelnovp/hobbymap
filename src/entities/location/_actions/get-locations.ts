@@ -1,7 +1,7 @@
 "use server";
 
 import { z } from "zod";
-import { getAppSessionStrictServer } from "@/kernel/lib/next-auth/server";
+import { getAppSessionServer } from "@/kernel/lib/next-auth/server";
 import { locationSchema } from "../_domain/schema";
 import { getLocationsService } from "../_services/get-locations";
 
@@ -18,7 +18,7 @@ export const getLocationsAction = async (
 ) => {
   const { userId } = propsSchema.parse(props);
 
-  const session = await getAppSessionStrictServer();
+  const session = await getAppSessionServer();
 
   const locations = await getLocationsService.exec({
     userId,

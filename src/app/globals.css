@@ -133,7 +133,6 @@
 .leaflet-control-attribution svg {
   @apply hidden !important;
 }
-
 .leaflet-bar a,
 .leaflet-control-layers,
 .leaflet-popup-content-wrapper,
@@ -142,4 +141,7 @@
 }
 .leaflet-popup-content-wrapper a {
   @apply text-foreground !important;
+}
+.leaflet-container a.leaflet-popup-close-button {
+  @apply w-7 h-7 leading-7 text-xl !important;
 }

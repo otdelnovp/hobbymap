@@ -40,16 +40,16 @@ export default function MapWrapper({
         <LayersControl.BaseLayer checked name="Google Map">
           <TileLayer
             attribution="Google Maps"
-            url="https://www.google.com/maps/vt?lyrs=m@189&x={x}&y={y}&z={z}"
+            url="https://www.google.com/maps/vt?x={x}&y={y}&z={z}"
           />
         </LayersControl.BaseLayer>
         <LayersControl.BaseLayer name="Google Map Satellite">
           <LayerGroup>
             <TileLayer
               attribution="Google Maps Satellite"
-              url="https://www.google.com/maps/vt?lyrs=s@189&x={x}&y={y}&z={z}"
+              url="https://www.google.com/maps/vt?x={x}&y={y}&z={z}"
             />
-            <TileLayer url="https://www.google.com/maps/vt?lyrs=y@189&x={x}&y={y}&z={z}" />
+            <TileLayer url="https://www.google.com/maps/vt?x={x}&y={y}&z={z}" />
           </LayerGroup>
         </LayersControl.BaseLayer>
         <LayersControl.BaseLayer name="Open Street Map">

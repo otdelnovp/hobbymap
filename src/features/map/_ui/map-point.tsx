@@ -34,7 +34,7 @@ export const MapPoint = ({ location }: { location: Location }) => {
             {location.user?.name ?? location.user?.email}
           </div>
           <div className="text-sm mb-2.5">
-            <span className="text-muted-foreground pr-1">created date:</span>
+            <span className="text-muted-foreground pr-1">created:</span>
             {getDateStr(location?.createdAt)}
           </div>
           <Button variant="outline" size="sm" asChild>

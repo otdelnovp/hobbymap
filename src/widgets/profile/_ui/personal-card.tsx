@@ -1,3 +1,6 @@
+import { Session } from "next-auth";
+import { Facebook, Instagram, Send } from "lucide-react";
+
 import {
   ProfileAvatar,
   getProfileDisplayHobby,
@@ -21,8 +24,6 @@ import {
 import { Button } from "@/shared/ui/button";
 
 import { EditProfileDialog } from "./edit-profile-dialog";
-import { Facebook, Instagram, Send } from "lucide-react";
-import { Session } from "next-auth";
 import { isAdmin } from "@/entities/user/_domain/ability";
 
 export function PersonalCard({ session }: { session: Session }) {
@@ -61,19 +62,15 @@ export function PersonalCard({ session }: { session: Session }) {
         <CardDescription>{user.email}</CardDescription>
         <CardContent>
           {isAdmin(session?.user) ? (
-            <p className="text-muted-foreground text-sm">
-              Role:{" "}
-              <span className="text-gray-700">
-                {getProfileDisplayRole(user)}
-              </span>
+            <p className="text-sm">
+              <span className="text-muted-foreground mr-1">Role:</span>
+              {getProfileDisplayRole(user)}
             </p>
           ) : null}
           {isAdmin(session?.user) && user.hobby ? (
-            <p className="text-muted-foreground text-sm">
-              Hobby:{" "}
-              <span className="text-gray-700">
-                {getProfileDisplayHobby(user)}
-              </span>
+            <p className="text-sm">
+              <span className="text-muted-foreground mr-1">Hobby:</span>
+              {getProfileDisplayHobby(user)}
             </p>
           ) : null}
           <TooltipProvider>

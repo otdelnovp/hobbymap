@@ -134,6 +134,8 @@
   @apply hidden !important;
 }
 
+.leaflet-bar a,
+.leaflet-control-layers,
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {
   @apply bg-background text-foreground !important;

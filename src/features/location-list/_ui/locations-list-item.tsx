@@ -29,7 +29,7 @@ export const LocationListItem = ({
           <CardTitle className="text-lg pr-8">
             <HobbyIcon
               hobby={location.hobby}
-              className="w-5 h-5 mr-2 inline-block align-[0.1em]"
+              className="w-5 h-5 mr-2 inline-block align-[-0.25em]"
             />
             {location.title}
           </CardTitle>

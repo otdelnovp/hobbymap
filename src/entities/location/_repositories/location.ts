@@ -1,12 +1,16 @@
 import { dbClient } from "@/shared/lib/db";
-import { UserId } from "@/kernel/domain/user";
+import { Hobby, UserId } from "@/kernel/domain/user";
 import { Location, LocationId } from "../_domain/types";
 
 export class LocationRepository {
-  async getLocationsByUserId(userId?: UserId): Promise<Location[]> {
+  async getLocationsByUserId(
+    userId?: UserId,
+    hobby?: Hobby,
+  ): Promise<Location[]> {
     return dbClient.location.findMany({
       where: {
         userId,
+        hobby,
       },
       include: {
         user: {

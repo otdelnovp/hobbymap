@@ -1,14 +1,14 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { UserId } from "@/kernel/domain/user";
+import { Hobby, UserId } from "@/kernel/domain/user";
 import { getLocationsAction } from "../_actions/get-locations";
 import { getLocationAction } from "../_actions/get-location";
 import { Location, LocationId } from "../location";
 
 const baseKey = "location";
 
-export const getLocationsQuery = (userId?: UserId) => ({
+export const getLocationsQuery = (userId?: UserId, hobby?: Hobby) => ({
   queryKey: [baseKey, "getLocationsByUserId", userId],
-  queryFn: () => getLocationsAction({ userId }),
+  queryFn: () => getLocationsAction({ userId, hobby }),
 });
 
 export const useInvalidateLocations = () => {

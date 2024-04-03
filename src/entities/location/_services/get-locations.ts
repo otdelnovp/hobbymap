@@ -1,4 +1,4 @@
-import { SharedSession, UserId } from "@/kernel/domain/user";
+import { Hobby, SharedSession, UserId } from "@/kernel/domain/user";
 import { AuthorizationError } from "@/shared/lib/errors";
 
 import { locationRepository } from "../_repositories/location";
@@ -7,11 +7,12 @@ import { Location } from "../_domain/types";
 
 type GetLocations = {
   userId?: UserId;
+  hobby?: Hobby;
   session: SharedSession | null;
 };
 
 export class GetLocationsService {
-  async exec({ userId, session }: GetLocations): Promise<Location[]> {
+  async exec({ userId, hobby, session }: GetLocations): Promise<Location[]> {
     const locationAbility = createLocationAbility(session);
 
     if (!locationAbility.canGetLocations(userId)) {
@@ -20,6 +21,7 @@ export class GetLocationsService {
 
     return await locationRepository.getLocationsByUserId(
       userId || session?.user.id,
+      hobby,
     );
   }
 }

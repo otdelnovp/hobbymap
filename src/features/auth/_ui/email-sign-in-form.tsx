@@ -9,7 +9,7 @@ import {
 import { useForm } from "react-hook-form";
 import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
-import { Spinner } from "@/shared/ui/spinner";
+import { Spinner } from "@/shared/icons/spinner";
 import { useEmailSignIn } from "../_vm/use-email-sign-in";
 
 export function EmailSignInForm() {

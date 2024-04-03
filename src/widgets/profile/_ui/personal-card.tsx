@@ -25,6 +25,7 @@ import { Button } from "@/shared/ui/button";
 
 import { EditProfileDialog } from "./edit-profile-dialog";
 import { isAdmin } from "@/entities/user/_domain/ability";
+import { HobbyIcon } from "@/shared/icons/hobby-icon";
 
 export function PersonalCard({ session }: { session: Session }) {
   const user = session.user;
@@ -70,6 +71,7 @@ export function PersonalCard({ session }: { session: Session }) {
           {isAdmin(session?.user) && user.hobby ? (
             <p className="text-sm">
               <span className="text-muted-foreground mr-1">Hobby:</span>
+              <HobbyIcon hobby={user.hobby} className="ml-1" />
               {getProfileDisplayHobby(user)}
             </p>
           ) : null}

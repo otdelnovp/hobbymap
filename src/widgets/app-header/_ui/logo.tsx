@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LogoIcon } from "@/shared/ui/logo-icon";
+import { LogoIcon } from "@/shared/icons/logo-icon";
 
 export function Logo() {
   return (

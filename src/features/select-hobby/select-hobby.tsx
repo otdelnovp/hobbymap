@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Session } from "next-auth";
 import { useRouter } from "next/navigation";
 
 import {
@@ -12,16 +13,16 @@ import {
   SelectValue,
 } from "@/shared/ui/select";
 
+import { Spinner } from "@/shared/icons/spinner";
+import { HobbyIcon } from "@/shared/icons/hobby-icon";
+import { Hobby, HobbyDict } from "@/kernel/domain/user";
+
 import {
   getLocalStorage,
   setLocalStorage,
 } from "@/shared/hooks/useLocalStorage";
 
-import { Hobby, HobbyDict } from "@/kernel/domain/user";
-import { getProfileDisplayHobbyIcon } from "@/entities/user/profile";
 import { useUpdateHobby } from "./_vm/use-update-hobby";
-import { Spinner } from "@/shared/ui/spinner";
-import { Session } from "next-auth";
 
 export const SelectHobby = ({
   session,
@@ -80,7 +81,7 @@ export const SelectHobby = ({
                 {updateHobby.isPending ? (
                   <Spinner {...iconProps} />
                 ) : (
-                  getProfileDisplayHobbyIcon(hobbyKey as keyof typeof HobbyDict)
+                  <HobbyIcon hobby={hobbyKey as keyof typeof HobbyDict} />
                 )}
                 {HobbyDict[hobbyKey as keyof typeof HobbyDict]}
               </SelectItem>

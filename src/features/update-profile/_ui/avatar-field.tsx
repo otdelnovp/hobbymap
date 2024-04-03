@@ -1,5 +1,5 @@
 import { Button } from "@/shared/ui/button";
-import { Spinner } from "@/shared/ui/spinner";
+import { Spinner } from "@/shared/icons/spinner";
 import { ProfileAvatar } from "@/entities/user/profile";
 import { useUploadAvatar } from "../_vm/use-upload-avatar";
 

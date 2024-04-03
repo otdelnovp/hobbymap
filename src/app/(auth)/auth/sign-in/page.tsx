@@ -2,7 +2,7 @@ import { SignInForm } from "@/features/auth/sign-in-form.server";
 import { Card, CardContent, CardHeader } from "@/shared/ui/card";
 import React from "react";
 import { Suspense } from "react";
-import { SpinnerProp } from "@/shared/ui/spinner-prop";
+import { SpinnerProp } from "@/shared/icons/spinner-prop";
 import AuthenticationError from "./_error";
 
 export default function AuthenticationPage({

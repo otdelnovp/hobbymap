@@ -1,5 +1,5 @@
 import { useAppearanceDelay } from "../lib/react";
-import { SpinnerProp } from "./spinner-prop";
+import { SpinnerProp } from "../icons/spinner-prop";
 
 export function FullPageSpinner({ isLoading }: { isLoading?: boolean }) {
   const show = useAppearanceDelay(isLoading);

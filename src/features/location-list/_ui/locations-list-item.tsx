@@ -1,9 +1,7 @@
-import { MapPin } from "lucide-react";
-
 import { Location } from "@/entities/location/location";
 import { SharedUser } from "@/kernel/domain/user";
 import { getDateStr } from "@/shared/lib/date";
-import { getProfileDisplayHobbyIcon } from "@/entities/user/profile";
+import { HobbyIcon } from "@/shared/icons/hobby-icon";
 
 import { EditLocation } from "@/features/edit-location/edit-location";
 
@@ -29,9 +27,10 @@ export const LocationListItem = ({
       <Card className="relative">
         <CardHeader className="p-3">
           <CardTitle className="text-lg pr-8">
-            {getProfileDisplayHobbyIcon(location.hobby, {
-              className: "w-5 h-5 mr-2 inline-block align-[-0.25em]",
-            })}
+            <HobbyIcon
+              hobby={location.hobby}
+              className="w-5 h-5 mr-2 inline-block align-[0.1em]"
+            />
             {location.title}
           </CardTitle>
           {location.description ? (

@@ -5,7 +5,7 @@ import { Marker, Tooltip, Popup } from "react-leaflet";
 import { Location } from "@/entities/location/_domain/types";
 import { getDateStr } from "@/shared/lib/date";
 import { Button } from "@/shared/ui/button";
-import { getProfileDisplayHobbyIcon } from "@/entities/user/profile";
+import { HobbyIcon } from "@/shared/icons/hobby-icon";
 
 export const MapPoint = ({ location }: { location: Location }) => {
   return location.latitude && location.longitude ? (
@@ -19,9 +19,10 @@ export const MapPoint = ({ location }: { location: Location }) => {
       <Popup>
         <div className="w-25">
           <h3 className="font-semibold mb-1">
-            {getProfileDisplayHobbyIcon(location.hobby, {
-              className: "w-5 h-5 mr-2 inline-block align-[-0.3em]",
-            })}
+            <HobbyIcon
+              hobby={location.hobby}
+              className="w-5 h-5 mr-2 inline-block align-[-0.3em]"
+            />
             {location.title}
           </h3>
           {location.description ? (

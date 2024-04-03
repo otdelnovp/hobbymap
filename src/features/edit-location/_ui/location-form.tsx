@@ -7,13 +7,13 @@ import * as z from "zod";
 
 import { HOBBY, HobbyDict, SharedUser } from "@/kernel/domain/user";
 import { isOwner } from "@/entities/user/_domain/ability";
-import { getProfileDisplayHobbyIcon } from "@/entities/user/profile";
 
 import { useUpdateLocation } from "../_vm/use-update-location";
 import { useCreateLocation } from "../_vm/use-create-location";
 
 import { Globe } from "lucide-react";
 
+import { HobbyIcon } from "@/shared/icons/hobby-icon";
 import { Button } from "@/shared/ui/button";
 import {
   Form,
@@ -32,7 +32,7 @@ import {
   SelectValue,
 } from "@/shared/ui/select";
 import { Input } from "@/shared/ui/input";
-import { Spinner } from "@/shared/ui/spinner";
+import { Spinner } from "@/shared/icons/spinner";
 import { Location } from "@/entities/location/location";
 import { Textarea } from "@/shared/ui/textarea";
 import { Separator } from "@/shared/ui/separator";
@@ -158,9 +158,9 @@ export function LocationForm({
                     <SelectGroup>
                       {Object.keys(HobbyDict).map((hobbyKey) => (
                         <SelectItem key={hobbyKey} value={hobbyKey}>
-                          {getProfileDisplayHobbyIcon(
-                            hobbyKey as keyof typeof HobbyDict,
-                          )}
+                          <HobbyIcon
+                            hobby={hobbyKey as keyof typeof HobbyDict}
+                          />
                           {HobbyDict[hobbyKey as keyof typeof HobbyDict]}
                         </SelectItem>
                       ))}

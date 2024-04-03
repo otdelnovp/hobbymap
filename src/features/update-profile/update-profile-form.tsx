@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 
-import { SpinnerProp } from "@/shared/ui/spinner-prop";
+import { SpinnerProp } from "@/shared/icons/spinner-prop";
 import { getProfileQuery } from "@/entities/user/_queries";
 
 import { ProfileForm } from "./_ui/profile-form";

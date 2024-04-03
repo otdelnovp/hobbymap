@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/shared/ui/button";
-import { Spinner } from "@/shared/ui/spinner";
+import { Spinner } from "@/shared/icons/spinner";
 import { MailMinus } from "lucide-react";
 import { ClientSafeProvider } from "next-auth/react";
 import { useOAuthSignIn } from "../_vm/use-oauth-sign-in";

@@ -15,7 +15,7 @@ import {
 import { useAppSession } from "@/kernel/lib/next-auth/client";
 import { setLocalStorage } from "@/shared/hooks/useLocalStorage";
 import { isOwner } from "@/entities/user/_domain/ability";
-import { Profile, getProfileDisplayHobbyIcon } from "@/entities/user/profile";
+import { Profile } from "@/entities/user/profile";
 
 import { useUpdateProfile } from "../_vm/use-update-profile";
 // import { AvatarField } from "./avatar-field";
@@ -40,8 +40,9 @@ import {
   SelectValue,
 } from "@/shared/ui/select";
 import { Input } from "@/shared/ui/input";
-import { Spinner } from "@/shared/ui/spinner";
+import { Spinner } from "@/shared/icons/spinner";
 import { Separator } from "@/shared/ui/separator";
+import { HobbyIcon } from "@/shared/icons/hobby-icon";
 
 const profileFormSchema = z.object({
   name: z
@@ -223,9 +224,9 @@ export function ProfileForm({
                     <SelectGroup>
                       {Object.keys(HobbyDict).map((hobbyKey) => (
                         <SelectItem key={hobbyKey} value={hobbyKey}>
-                          {getProfileDisplayHobbyIcon(
-                            hobbyKey as keyof typeof HobbyDict,
-                          )}
+                          <HobbyIcon
+                            hobby={hobbyKey as keyof typeof HobbyDict}
+                          />
                           {HobbyDict[hobbyKey as keyof typeof HobbyDict]}
                         </SelectItem>
                       ))}

@@ -1,0 +1,93 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table Account {
+  id String [pk]
+  userId String [not null]
+  type String [not null]
+  provider String [not null]
+  providerAccountId String [not null]
+  refresh_token String
+  access_token String
+  expires_at Int
+  token_type String
+  scope String
+  id_token String
+  session_state String
+  oauth_token_secret String
+  oauth_token String
+  user User [not null]
+
+  indexes {
+    (provider, providerAccountId) [unique]
+  }
+}
+
+Table Session {
+  id String [pk]
+  sessionToken String [unique, not null]
+  userId String [not null]
+  expires DateTime [not null]
+  user User [not null]
+}
+
+Table VerificationToken {
+  id String [pk]
+  identifier String [not null]
+  token String [unique, not null]
+  expires DateTime [not null]
+
+  indexes {
+    (identifier, token) [unique]
+  }
+}
+
+Table User {
+  id String [pk]
+  name String
+  email String [unique, not null]
+  emailVerified DateTime
+  createdAt DateTime [default: `now()`, not null]
+  hashedPassword String
+  image String
+  isDeleted Boolean
+  role ROLE [not null, default: 'USER']
+  hobby HOBBY
+  instagram String
+  facebook String
+  telegram String
+  Account Account [not null]
+  Session Session [not null]
+  Location Location [not null]
+}
+
+Table Location {
+  id String [pk]
+  title String [not null]
+  description String
+  hobby HOBBY [not null]
+  createdAt DateTime [default: `now()`, not null]
+  latitude Float [not null]
+  longitude Float [not null]
+  userId String [not null]
+  user User [not null]
+}
+
+Enum ROLE {
+  OWNER
+  ADMIN
+  USER
+}
+
+Enum HOBBY {
+  RCCAR
+  DRONE
+  RCPLANE
+}
+
+Ref: Account.userId > User.id [delete: Cascade]
+
+Ref: Session.userId > User.id [delete: Cascade]
+
+Ref: Location.userId > User.id

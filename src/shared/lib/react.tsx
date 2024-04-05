@@ -34,9 +34,9 @@ export function useAppearanceDelay(
   },
 ) {
   const {
-    minDisplay = 300,
+    minDisplay = 500,
     defaultValue = false,
-    appearanceDelay = 300,
+    appearanceDelay = 500,
   } = options;
 
   const [delayedShow, setDelayedShow] = useState(defaultValue);

@@ -9,7 +9,7 @@ export function Actions({ session }: { session: Session | null }) {
     <>
       <SelectHobbyDialog session={session} />
       <SelectHobby session={session} />
-      <ToggleTheme />
+      {!session?.user && <ToggleTheme />}
     </>
   );
 }

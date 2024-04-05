@@ -14,14 +14,16 @@ import {
   DropdownMenuTrigger,
 } from "@/shared/ui/dropdown-menu";
 import { Button } from "@/shared/ui/button";
-import { LogOut, Contact, LockKeyhole } from "lucide-react";
+import { LogOut, Contact, LockKeyhole, MapPinned } from "lucide-react";
 
+import { SwitchTheme } from "@/features/theme/switch-theme";
 import { useSignOut } from "@/features/auth/use-sign-out";
 import { SignInButton } from "@/features/auth/sign-in-button";
 
 import {
   ProfileAvatar,
   getProfileDisplayName,
+  getProfileDisplayRole,
   isAdmin,
 } from "@/entities/user/profile";
 
@@ -45,6 +47,11 @@ export function Profile({ session }: { session: Session | null }) {
       link: "/lk",
       title: "Personal page",
       icon: <Contact className="mr-2 h-4 w-4" />,
+    },
+    {
+      link: "/lk",
+      title: "My locations",
+      icon: <MapPinned className="mr-2 h-4 w-4" />,
     },
     // {
     //   link: `/profile/${user?.id}`,
@@ -74,21 +81,28 @@ export function Profile({ session }: { session: Session | null }) {
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="p-px rounded-full self-center h-8 w-8"
+          className="p-px rounded-full self-center h-8 w-8 !ml-6"
         >
           <ProfileAvatar profile={user} className="w-8 h-8" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 mr-2 ">
         <DropdownMenuLabel>
-          <p>My account</p>
-          <p className="text-xs text-muted-foreground overflow-hidden text-ellipsis">
-            {getProfileDisplayName(user)}
-          </p>
+          <p>{getProfileDisplayName(user)}</p>
+          {isAdmin(user) ? (
+            <p className="text-xs text-muted-foreground overflow-hidden text-ellipsis">
+              {getProfileDisplayRole(user)}
+            </p>
+          ) : null}
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuLabel>
+          <SwitchTheme />
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           {navList.map((itemNav) => itemNavTemplate(itemNav))}
+          <DropdownMenuSeparator />
           <DropdownMenuItem
             disabled={isLoadingSignOut}
             onClick={() => signOut()}

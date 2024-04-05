@@ -9,8 +9,8 @@ export const useUpdateLocation = () => {
 
   const { mutateAsync, isPending } = useMutation({
     mutationFn: updateLocationAction,
-    async onSuccess({ locationId }) {
-      await invalidateLocations(session.data?.user.id);
+    async onSuccess({ locationId, location }) {
+      await invalidateLocations(session.data?.user.id, location.hobby);
     },
   });
 

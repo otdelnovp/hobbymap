@@ -1,4 +1,4 @@
-import { isAdmin } from "@/entities/user/_domain/ability";
+import { isAdmin } from "@/entities/user/profile";
 import { SharedSession, UserId } from "@/kernel/domain/user";
 import { Location } from "./types";
 

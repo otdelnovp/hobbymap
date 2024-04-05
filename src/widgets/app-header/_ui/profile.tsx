@@ -2,6 +2,7 @@
 
 import { Session } from "next-auth";
 import Link from "next/link";
+import { compact } from "lodash-es";
 
 import {
   DropdownMenu,
@@ -13,12 +14,22 @@ import {
   DropdownMenuTrigger,
 } from "@/shared/ui/dropdown-menu";
 import { Button } from "@/shared/ui/button";
-import { LogOut, Contact } from "lucide-react";
+import { LogOut, Contact, LockKeyhole } from "lucide-react";
 
 import { useSignOut } from "@/features/auth/use-sign-out";
 import { SignInButton } from "@/features/auth/sign-in-button";
 
-import { ProfileAvatar, getProfileDisplayName } from "@/entities/user/profile";
+import {
+  ProfileAvatar,
+  getProfileDisplayName,
+  isAdmin,
+} from "@/entities/user/profile";
+
+type ItemNav = {
+  link: string;
+  title: string;
+  icon: React.ReactElement;
+};
 
 export function Profile({ session }: { session: Session | null }) {
   const { signOut, isPending: isLoadingSignOut } = useSignOut();
@@ -28,6 +39,35 @@ export function Profile({ session }: { session: Session | null }) {
   if (!user) {
     return <SignInButton />;
   }
+
+  const navList: ItemNav[] = compact([
+    {
+      link: "/lk",
+      title: "Personal page",
+      icon: <Contact className="mr-2 h-4 w-4" />,
+    },
+    // {
+    //   link: `/profile/${user?.id}`,
+    //   title: "Профиль",
+    //   icon: <User className="mr-2 h-4 w-4" />,
+    // },
+    isAdmin(user) && {
+      link: "/api-doc",
+      title: "Admin panel",
+      icon: <LockKeyhole className="mr-2 h-4 w-4" />,
+    },
+  ]);
+
+  const itemNavTemplate = ({ link, title, icon }: ItemNav) => {
+    return (
+      <DropdownMenuItem key={link} asChild>
+        <Link href={link}>
+          {icon}
+          <span>{title}</span>
+        </Link>
+      </DropdownMenuItem>
+    );
+  };
 
   return (
     <DropdownMenu>
@@ -46,26 +86,14 @@ export function Profile({ session }: { session: Session | null }) {
             {getProfileDisplayName(user)}
           </p>
         </DropdownMenuLabel>
-        <DropdownMenuGroup></DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem asChild>
-            <Link href={"/lk"}>
-              <Contact className="mr-2 h-4 w-4" />
-              <span>Personal page</span>
-            </Link>
-          </DropdownMenuItem>
-          {/* <DropdownMenuItem asChild>
-            <Link href={`/profile/${user?.id}`}>
-              <User className="mr-2 h-4 w-4" />
-              <span>Профиль</span>
-            </Link>
-          </DropdownMenuItem> */}
+          {navList.map((itemNav) => itemNavTemplate(itemNav))}
           <DropdownMenuItem
             disabled={isLoadingSignOut}
             onClick={() => signOut()}
           >
-            <LogOut className="mr-2 h-4 w-4" />
+            <LogOut className="mr-2 h-4 w-4 text-red-700" />
             <span>Logout</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>

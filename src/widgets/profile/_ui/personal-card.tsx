@@ -2,6 +2,7 @@ import { Session } from "next-auth";
 import { Facebook, Instagram, Send } from "lucide-react";
 
 import {
+  isAdmin,
   ProfileAvatar,
   getProfileDisplayHobby,
   getProfileDisplayName,
@@ -24,7 +25,6 @@ import {
 import { Button } from "@/shared/ui/button";
 
 import { EditProfileDialog } from "./edit-profile-dialog";
-import { isAdmin } from "@/entities/user/_domain/ability";
 import { HobbyIcon } from "@/shared/icons/hobby-icon";
 
 export function PersonalCard({ session }: { session: Session }) {

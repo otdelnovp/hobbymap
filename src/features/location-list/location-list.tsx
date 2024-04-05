@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getLocationsQuery } from "@/entities/location/location";
+import { getLocalStorage } from "@/shared/hooks/useLocalStorage";
 
 import { Hobby, SharedUser } from "@/kernel/domain/user";
+
 import { LocationListItem } from "./_ui/locations-list-item";
 import { LocationListSkeleton } from "./_ui/locations-list-skeleton";
-import { getLocalStorage } from "@/shared/hooks/useLocalStorage";
 
 export function LocationList({ user }: { user: SharedUser }) {
   const localHobby: Hobby | undefined = getLocalStorage("hobby", true);
@@ -16,10 +16,6 @@ export function LocationList({ user }: { user: SharedUser }) {
     ...getLocationsQuery(user.id, localHobby),
     retry: 0,
   });
-
-  useEffect(() => {
-    locationsQuery.refetch();
-  }, [localHobby]);
 
   if (locationsQuery.isFetching || locationsQuery.isPending) {
     return <LocationListSkeleton />;

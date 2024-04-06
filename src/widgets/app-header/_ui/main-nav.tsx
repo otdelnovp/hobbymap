@@ -1,5 +1,5 @@
 import { SheetClose } from "@/shared/ui/sheet";
-import { Plus, PlusCircle } from "lucide-react";
+import { PlusCircle } from "lucide-react";
 import Link from "next/link";
 
 export function MainNav({ sheet }: { sheet?: boolean }) {

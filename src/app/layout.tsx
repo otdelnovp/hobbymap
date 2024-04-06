@@ -5,6 +5,7 @@ import "reactflow/dist/style.css";
 import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/shared/ui/utils";
 import { AppProvider } from "./_providers/app-provider";
+import { Toaster } from "@/shared/ui/sonner";
 
 export const metadata: Metadata = {
   title: {
@@ -49,6 +50,7 @@ export default function RootLayout({
         )}
       >
         <AppProvider>{children}</AppProvider>
+        <Toaster />
       </body>
     </html>
   );

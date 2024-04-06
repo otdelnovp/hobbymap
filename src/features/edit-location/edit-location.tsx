@@ -14,7 +14,7 @@ import { Button } from "@/shared/ui/button";
 
 import { SharedUser } from "@/kernel/domain/user";
 import { useAppSession } from "@/kernel/lib/next-auth/client";
-import { Location } from "@/entities/location/_domain/types";
+import { Location } from "@/entities/location/location";
 
 import { LocationForm } from "./_ui/location-form";
 

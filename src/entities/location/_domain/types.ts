@@ -14,3 +14,8 @@ export type Location = {
   user?: Partial<Profile>;
   createdAt?: Date;
 };
+
+export type Coord = {
+  latitude: number;
+  longitude: number;
+};

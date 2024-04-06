@@ -7,7 +7,7 @@ import { getLocalStorage } from "@/shared/hooks/useLocalStorage";
 import { SharedUser, Hobby } from "@/kernel/domain/user";
 import { FullPageSpinner } from "@/shared/ui/full-page-spinner";
 
-import MapWrapper from "./_ui/map-wrapper";
+import Map from "../../widgets/map/map";
 import { MapPoint } from "./_ui/map-point";
 
 export default function MapLocations({ user }: { user?: SharedUser }) {
@@ -24,13 +24,13 @@ export default function MapLocations({ user }: { user?: SharedUser }) {
 
   return (
     <>
-      <MapWrapper>
+      <Map>
         {!locationsQuery.isPending && locationsQuery.data?.locations.length
           ? locationsQuery.data.locations.map((location: Location) => (
               <MapPoint key={location.id} location={location} />
             ))
           : null}
-      </MapWrapper>
+      </Map>
       <FullPageSpinner isLoading={locationsQuery.isPending} />
     </>
   );

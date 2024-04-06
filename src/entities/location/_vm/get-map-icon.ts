@@ -12,9 +12,9 @@ const iconColors: Record<Hobby, string> = {
   RCPLANE: blueIcon,
 };
 
-export const getMapIcon = (hobby: Hobby) =>
+export const getMapIcon = (hobby?: Hobby) =>
   new Icon({
-    iconUrl: iconColors[hobby],
+    iconUrl: hobby ? iconColors[hobby] : greyIcon,
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],

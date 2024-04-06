@@ -2,11 +2,11 @@
 
 import { Marker, Tooltip, Popup } from "react-leaflet";
 
-import { Location } from "@/entities/location/_domain/types";
+import { Location } from "@/entities/location/location";
 import { getDateStr } from "@/shared/lib/date";
 import { Button } from "@/shared/ui/button";
 import { HobbyIcon } from "@/shared/icons/hobby-icon";
-import { getMapIcon } from "../_vm/get-map-icon";
+import { getMapIcon } from "@/entities/location/location";
 
 export const MapPoint = ({ location }: { location: Location }) => {
   return location.latitude && location.longitude ? (

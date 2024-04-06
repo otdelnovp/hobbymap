@@ -1,13 +1,20 @@
 import { useState, useEffect } from "react";
-import { setLocalStorage } from "./useLocalStorage";
+import { getLocalStorage, setLocalStorage } from "./useLocalStorage";
 
 type Coord = {
   latitude: number;
   longitude: number;
 };
 
+export const defaultPosition: Coord = {
+  latitude: 59.93863,
+  longitude: 30.31413,
+}; // SPb with love :)
+
 export const usePosition = () => {
-  const [position, setPosition] = useState<Coord>();
+  const savedLocation = getLocalStorage("geolocation") || defaultPosition;
+
+  const [position, setPosition] = useState<Coord>(savedLocation);
 
   const [error, setError] = useState<null | string>(null);
 
@@ -16,7 +23,10 @@ export const usePosition = () => {
       latitude: coords.latitude,
       longitude: coords.longitude,
     });
-    setLocalStorage("geolocation", [coords.latitude, coords.longitude]);
+    setLocalStorage("geolocation", {
+      latitude: coords.latitude,
+      longitude: coords.longitude,
+    });
   };
 
   const onError = (error: GeolocationPositionError) => {

@@ -10,9 +10,8 @@ import { useMap } from "react-leaflet/hooks";
 import "leaflet/dist/leaflet.css";
 
 import { usePosition } from "@/shared/hooks/usePosition";
-import { getLocalStorage } from "@/shared/hooks/useLocalStorage";
 
-function Map({ children }: { children?: React.ReactNode }) {
+function MapComponent({ children }: { children?: React.ReactNode }) {
   const map = useMap();
   const { latitude, longitude, error } = usePosition();
 
@@ -25,15 +24,18 @@ function Map({ children }: { children?: React.ReactNode }) {
   return children;
 }
 
-export default function MapWrapper({
+export default function Map({
   children = null,
+  zoom = 11,
 }: {
   children?: React.ReactNode;
+  zoom?: number;
 }) {
+  const { latitude, longitude } = usePosition();
   return (
     <MapContainer
-      center={getLocalStorage("geolocation") || [59.93863, 30.31413]}
-      zoom={11}
+      center={[latitude, longitude]}
+      zoom={zoom}
       style={{ position: "absolute", width: "100%", height: "100%" }}
     >
       <LayersControl>
@@ -65,7 +67,7 @@ export default function MapWrapper({
           />
         </LayersControl.BaseLayer> */}
       </LayersControl>
-      <Map>{children}</Map>
+      <MapComponent>{children}</MapComponent>
     </MapContainer>
   );
 }

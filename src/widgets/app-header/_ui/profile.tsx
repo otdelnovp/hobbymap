@@ -107,7 +107,7 @@ export function Profile({ session }: { session: Session | null }) {
             disabled={isLoadingSignOut}
             onClick={() => signOut()}
           >
-            <LogOut className="mr-2 h-4 w-4 text-red-700" />
+            <LogOut className="mr-2 h-4 w-4 text-red-700 dark:text-red-500" />
             <span>Logout</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>

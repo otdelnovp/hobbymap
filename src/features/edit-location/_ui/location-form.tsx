@@ -75,7 +75,9 @@ export function LocationForm({
 }) {
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
-    defaultValues: location ? getDefaultValues(location) : {},
+    defaultValues: location
+      ? getDefaultValues(location)
+      : { hobby: user.hobby || undefined },
   });
 
   const updateLocation = useUpdateLocation();

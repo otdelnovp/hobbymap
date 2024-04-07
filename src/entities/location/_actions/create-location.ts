@@ -17,9 +17,12 @@ const resultSchema = z.object({
 export const createLocationAction = async (
   props: z.infer<typeof propsSchema>,
 ) => {
+  console.log(333333);
   const { userId, location } = propsSchema.parse(props);
 
   const session = await getAppSessionStrictServer();
+
+  console.log(22222, userId, location);
 
   const newLocation = await createLocationService.exec({
     session,

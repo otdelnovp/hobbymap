@@ -3,7 +3,7 @@ import { SharedUser } from "@/kernel/domain/user";
 import { getDateStr } from "@/shared/lib/date";
 import { HobbyIcon } from "@/shared/icons/hobby-icon";
 
-import { EditLocation } from "@/features/edit-location/edit-location";
+import { EditLocationButton } from "@/features/edit-location/edit-location-button";
 
 import {
   Card,
@@ -58,7 +58,7 @@ export const LocationListItem = ({
             </a>
           </Button>
         </CardFooter>
-        <EditLocation user={user} location={location} />
+        <EditLocationButton user={user} location={location} />
       </Card>
     </div>
   );

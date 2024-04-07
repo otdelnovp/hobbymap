@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 import { SharedUser } from "@/kernel/domain/user";
@@ -15,13 +16,20 @@ export default function MapAddLocation({
   user?: SharedUser;
   callbackUrl?: string;
 }) {
+  const router = useRouter();
   useEffect(() => {
     toast("Click on the map to create your hobby location");
   });
   return (
     <>
       <Map zoom={13}>
-        <MapAddLocationPoint onSuccess={() => console.log("onSuccess")} />
+        <MapAddLocationPoint
+          user={user}
+          onSuccess={() => {
+            toast.success("New location added!");
+            router.push(callbackUrl || "/");
+          }}
+        />
       </Map>
     </>
   );

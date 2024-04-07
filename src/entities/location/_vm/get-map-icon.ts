@@ -1,3 +1,5 @@
+"use client";
+
 import { Hobby } from "@/kernel/domain/user";
 import { Icon } from "leaflet";
 

@@ -11,6 +11,8 @@ import { isOwner } from "@/entities/user/_domain/ability";
 import { useUpdateLocation } from "../_vm/use-update-location";
 import { useCreateLocation } from "../_vm/use-create-location";
 
+import { Globe } from "lucide-react";
+
 import { HobbyIcon } from "@/shared/icons/hobby-icon";
 import { Button } from "@/shared/ui/button";
 import {
@@ -33,6 +35,7 @@ import { Input } from "@/shared/ui/input";
 import { Spinner } from "@/shared/icons/spinner";
 import { Location } from "@/entities/location/location";
 import { Textarea } from "@/shared/ui/textarea";
+import { Separator } from "@/shared/ui/separator";
 
 const profileFormSchema = z.object({
   title: z.string().trim().max(50, {
@@ -40,8 +43,12 @@ const profileFormSchema = z.object({
   }),
   description: z.string().trim().optional(),
   hobby: z.nativeEnum(HOBBY),
-  latitude: z.number().readonly(),
-  longitude: z.number().readonly(),
+  latitude: z.number(),
+  // .min(-90, "Its not correct coord")
+  // .max(90, "Its not correct coord"),
+  longitude: z.number(),
+  // .min(-90, "Its not correct coord")
+  // .max(90, "Its not correct coord"),
 });
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
@@ -55,14 +62,14 @@ const getDefaultValues = (location: Partial<Location>) => ({
   longitude: location.longitude,
 });
 
-export function LocationForm({
+export function LocationFormWithGEO({
   user,
   location,
   onSuccess,
   submitText = "Save",
 }: {
   user: SharedUser;
-  location?: Partial<Location>;
+  location?: Location;
   onSuccess?: () => void;
   submitText?: string;
 }) {
@@ -78,7 +85,6 @@ export function LocationForm({
   const isPending = updateLocation.isPending || createLocation.isPending;
 
   const handleSubmit = form.handleSubmit(async (data) => {
-    console.log(11111, data);
     const newLocation = location?.id
       ? await updateLocation.update({
           locationId: location.id,
@@ -93,6 +99,10 @@ export function LocationForm({
 
     onSuccess?.();
   });
+
+  const iconFieldProps = {
+    className: "w-5 h-5 mr-1.5 inline-block align-[-0.3em]",
+  };
 
   return (
     <Form {...form}>
@@ -124,8 +134,6 @@ export function LocationForm({
               <FormControl>
                 <Textarea
                   placeholder="Description of this location"
-                  rows={2}
-                  className="min-h-16"
                   {...field}
                 />
               </FormControl>
@@ -138,7 +146,7 @@ export function LocationForm({
           control={form.control}
           name="hobby"
           render={({ field }) => (
-            <FormItem className="col-span-12">
+            <FormItem className="col-span-12 lg:col-span-6">
               <FormLabel>Hobby</FormLabel>
               <FormControl>
                 <Select
@@ -167,7 +175,53 @@ export function LocationForm({
           )}
         />
 
-        <div className="col-span-12 !mt-3">
+        <Separator className="col-span-12 mt-4 mb-2" />
+        <h2 className="col-span-12 text-md font-semibold">
+          <Globe {...iconFieldProps} />
+          Geo locations
+        </h2>
+
+        <FormField
+          control={form.control}
+          name="latitude"
+          render={({ field }) => (
+            <FormItem className="col-span-12 lg:col-span-6">
+              <FormLabel>Latitude</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  type="number"
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    field.onChange(+e.target.value)
+                  }
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="longitude"
+          render={({ field }) => (
+            <FormItem className="col-span-12 lg:col-span-6">
+              <FormLabel>Longitude</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  type="number"
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    field.onChange(+e.target.value)
+                  }
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <div className="col-span-12 lg:col-span-4 !mt-3">
           <Button
             type="submit"
             className="w-full lg:w-auto"

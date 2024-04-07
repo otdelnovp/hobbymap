@@ -1,12 +1,21 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { Marker, Popup, Tooltip, useMapEvents } from "react-leaflet";
 
 import { usePosition } from "@/shared/hooks/usePosition";
 import { getLocalStorage } from "@/shared/hooks/useLocalStorage";
-import { Hobby } from "@/kernel/domain/user";
+import { Hobby, SharedUser } from "@/kernel/domain/user";
 import { getMapIcon } from "@/entities/location/location";
+import { EditLocation } from "@/features/edit-location/edit-location";
 
-export function MapAddLocationPoint({ onSuccess }: { onSuccess: () => void }) {
+export function MapAddLocationPoint({
+  user,
+  onSuccess,
+}: {
+  user?: SharedUser;
+  onSuccess: () => void;
+}) {
   const localHobby: Hobby | undefined = getLocalStorage("hobby", true);
 
   const { latitude, longitude, error } = usePosition();
@@ -28,7 +37,10 @@ export function MapAddLocationPoint({ onSuccess }: { onSuccess: () => void }) {
 
   useEffect(() => {
     if (latitude && longitude && !error) {
-      map.setView([latitude, longitude]);
+      setPosition({
+        latitude,
+        longitude,
+      });
     }
   }, [latitude, longitude, error, map]);
 
@@ -38,10 +50,16 @@ export function MapAddLocationPoint({ onSuccess }: { onSuccess: () => void }) {
       icon={getMapIcon(localHobby)}
     >
       <Tooltip direction="top" offset={[-15, -13]}>
-        Select this position for create new location
+        Click on this marker to select this position to create
+        <br /> a new location, or click elsewhere on the map
+        <br /> to select another location
       </Tooltip>
       <Popup>
-        <div className="w-96 h-48">Creation form</div>
+        <EditLocation
+          user={user}
+          location={{ ...position, hobby: localHobby }}
+          onSuccess={onSuccess}
+        />
       </Popup>
     </Marker>
   ) : null;

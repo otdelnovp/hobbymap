@@ -49,7 +49,7 @@ export function Profile({ session }: { session: Session | null }) {
       icon: <Contact className="mr-2 h-4 w-4" />,
     },
     {
-      link: "/locations",
+      link: "/lk",
       title: "My locations",
       icon: <MapPinned className="mr-2 h-4 w-4" />,
     },

@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     default: "Hobby Map",
   },
   description: "Locations for your hobby",
+  viewport: "width=device-width, user-scalable=no",
 };
 
 const fontSans = FontSans({

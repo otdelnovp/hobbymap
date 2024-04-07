@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default async function ProfilePage() {
   const session = await getAppSessionServer();
   return (
-    <ContentWrapper fullSize className="flex items-center justify-center">
+    <ContentWrapper fullSize>
       <MapAddLocation user={session?.user} />
     </ContentWrapper>
   );

@@ -1,4 +1,6 @@
 "use client";
+
+import { useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
@@ -6,10 +8,10 @@ import {
   FormItem,
   FormLabel,
 } from "@/shared/ui/form";
-import { useForm } from "react-hook-form";
 import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
 import { Spinner } from "@/shared/icons/spinner";
+
 import { generateTestLink } from "../_lib/generate-test-link";
 import { useTestEmailSignIn } from "../_vm/use-test-email-sign-in";
 

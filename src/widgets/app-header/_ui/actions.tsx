@@ -7,9 +7,9 @@ import { SelectHobby } from "@/features/select-hobby/select-hobby";
 export function Actions({ session }: { session: Session | null }) {
   return (
     <>
+      {!session?.user && <ToggleTheme />}
       <SelectHobbyDialog session={session} />
       <SelectHobby session={session} />
-      {!session?.user && <ToggleTheme />}
     </>
   );
 }

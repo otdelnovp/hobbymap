@@ -1,9 +1,14 @@
-import { SignInForm } from "@/features/auth/sign-in-form.server";
-import { Card, CardContent, CardHeader } from "@/shared/ui/card";
 import React from "react";
 import { Suspense } from "react";
+
+import { ContentWrapper } from "@/shared/ui/content-wrapper";
+import { Card, CardContent, CardHeader } from "@/shared/ui/card";
 import { SpinnerProp } from "@/shared/icons/spinner-prop";
+
+import { SignInForm } from "@/features/auth/sign-in-form.server";
+
 import AuthenticationError from "./_error";
+import { PageTitle } from "@/shared/ui/page-title";
 
 export default function AuthenticationPage({
   searchParams,
@@ -12,12 +17,11 @@ export default function AuthenticationPage({
 }) {
   return (
     <>
-      {" "}
       <AuthenticationError error={searchParams?.error} />
-      <div className="container relative flex-col items-center justify-center self-center pt-24">
-        <Card className="max-w-[350px] mx-auto">
-          <CardHeader className="flex flex-col space-y-2 text-center">
-            <h1 className="text-2xl font-semibold tracking-tight">Sign in</h1>
+      <ContentWrapper>
+        <Card className="w-full max-w-[350px] m-auto">
+          <CardHeader className="flex flex-col text-center pb-2">
+            <PageTitle size="small">Sign in</PageTitle>
           </CardHeader>
           <CardContent className="grid gap-4">
             <Suspense fallback={<SpinnerProp />}>
@@ -25,7 +29,7 @@ export default function AuthenticationPage({
             </Suspense>
           </CardContent>
         </Card>
-      </div>
+      </ContentWrapper>
     </>
   );
 }

@@ -41,6 +41,7 @@ export function EmailSignInForm() {
                     autoComplete="email"
                     autoCorrect="off"
                     disabled={emailSignIn.isPending}
+                    required
                     {...field}
                   />
                 </FormControl>

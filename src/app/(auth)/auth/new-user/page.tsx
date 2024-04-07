@@ -1,9 +1,17 @@
 import { redirect } from "next/navigation";
+
 import { getAppSessionServer } from "@/kernel/lib/next-auth/server";
-import { UpdateProfileForm } from "@/features/update-profile/update-profile-form";
-import { Separator } from "@/shared/ui/separator";
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+} from "@/shared/ui/card";
 import { ContentWrapper } from "@/shared/ui/content-wrapper";
 import { PageTitle } from "@/shared/ui/page-title";
+
+import { UpdateProfileForm } from "@/features/update-profile/update-profile-form";
 
 export default async function NewUserPage({
   searchParams,
@@ -17,19 +25,23 @@ export default async function NewUserPage({
   }
 
   return (
-    <ContentWrapper className="max-w-[600px]">
-      <div>
-        <PageTitle size="middle">Last step</PageTitle>
-        <p className="text-sm text-muted-foreground">
-          Update your profile, this is how other users will see you on this site
-        </p>
-      </div>
-      <Separator className="my-6" />
-      <UpdateProfileForm
-        userId={session.user.id}
-        newUser={true}
-        callbackUrl={searchParams.callbackUrl}
-      />
+    <ContentWrapper>
+      <Card className="w-full max-w-[600px] m-auto">
+        <CardHeader>
+          <PageTitle size="small">Last step</PageTitle>
+          <CardDescription>
+            Update your profile, this is how other users will see you on this
+            site
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-4">
+          <UpdateProfileForm
+            userId={session.user.id}
+            newUser={true}
+            callbackUrl={searchParams.callbackUrl}
+          />
+        </CardContent>
+      </Card>
     </ContentWrapper>
   );
 }

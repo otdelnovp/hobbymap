@@ -21,16 +21,14 @@ export default function MapAddLocation({
     toast("Click on the map to create your hobby location");
   });
   return (
-    <>
-      <Map zoom={13}>
-        <MapAddLocationPoint
-          user={user}
-          onSuccess={() => {
-            toast.success("New location added!");
-            router.push(callbackUrl || "/");
-          }}
-        />
-      </Map>
-    </>
+    <Map zoom={13}>
+      <MapAddLocationPoint
+        user={user}
+        onSuccess={() => {
+          toast.success("New location added!");
+          router.push(callbackUrl || "/");
+        }}
+      />
+    </Map>
   );
 }

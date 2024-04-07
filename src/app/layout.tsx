@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+
 import "./globals.css";
 import "reactflow/dist/style.css";
 
@@ -13,7 +14,13 @@ export const metadata: Metadata = {
     default: "Hobby Map",
   },
   description: "Locations for your hobby",
-  viewport: "width=device-width, user-scalable=no",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 const fontSans = FontSans({

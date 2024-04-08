@@ -19,10 +19,7 @@ export class GetLocationsService {
       throw new AuthorizationError();
     }
 
-    return await locationRepository.getLocationsByUserId(
-      userId || session?.user.id,
-      hobby,
-    );
+    return await locationRepository.getLocationsByUserId(userId, hobby);
   }
 }
 

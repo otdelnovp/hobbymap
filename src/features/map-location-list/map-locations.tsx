@@ -14,7 +14,7 @@ export default function MapLocations({ user }: { user?: SharedUser }) {
   const localHobby: Hobby | undefined = getLocalStorage("hobby", true);
 
   const locationsQuery = useQuery({
-    ...getLocationsQuery(user?.id, localHobby),
+    ...getLocationsQuery({ hobby: localHobby }),
     retry: 0,
   });
 

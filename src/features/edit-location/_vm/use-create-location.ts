@@ -10,7 +10,18 @@ export const useCreateLocation = () => {
   const { mutateAsync, isPending } = useMutation({
     mutationFn: createLocationAction,
     async onSuccess({ location }, { userId }) {
-      await invalidateLocations(session.data?.user.id, location.hobby);
+      await invalidateLocations({
+        hobby: location.hobby,
+      });
+      await invalidateLocations({
+        userId: userId,
+        hobby: location.hobby,
+      });
+      if (userId !== session.data?.user.id)
+        await invalidateLocations({
+          userId: session.data?.user.id,
+          hobby: location.hobby,
+        });
     },
   });
 

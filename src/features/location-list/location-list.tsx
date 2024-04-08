@@ -14,7 +14,7 @@ export function LocationList({ user }: { user: SharedUser }) {
   const localHobby: Hobby | undefined = getLocalStorage("hobby", true);
 
   const locationsQuery = useQuery({
-    ...getLocationsQuery(user.id, localHobby),
+    ...getLocationsQuery({ userId: user.id, hobby: localHobby }),
     retry: 0,
   });
 

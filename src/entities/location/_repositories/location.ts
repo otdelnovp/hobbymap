@@ -7,7 +7,7 @@ export class LocationRepository {
     userId?: UserId,
     hobby?: Hobby,
   ): Promise<Location[]> {
-    return dbClient.location.findMany({
+    const locs = await dbClient.location.findMany({
       where: {
         userId,
         hobby,
@@ -24,6 +24,8 @@ export class LocationRepository {
         },
       },
     });
+    console.log(22222, userId, hobby, locs);
+    return locs;
   }
 
   async getLocationById(locationId: LocationId): Promise<Location> {

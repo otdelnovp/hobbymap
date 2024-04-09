@@ -10,7 +10,7 @@ import { Skeleton } from "@/shared/ui/skeleton";
 
 export const LocationListSkeleton = () => {
   return (
-    <div className="w-full md:w-1/2 mb-3">
+    <div className="w-full md:w-1/2 lg:w-1/3 mb-3">
       <Card className="relative">
         <CardHeader className="p-3">
           <CardTitle>

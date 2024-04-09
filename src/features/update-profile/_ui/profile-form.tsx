@@ -54,7 +54,7 @@ const profileFormSchema = z.object({
     .optional(),
   email: z.string().email().optional(),
   image: z.string().optional(),
-  role: z.nativeEnum(ROLES),
+  role: z.nativeEnum(ROLES).optional(),
   hobby: z.nativeEnum(HOBBY),
   instagram: z
     .string()

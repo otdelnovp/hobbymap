@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import { HOBBY, HobbyDict, SharedUser } from "@/kernel/domain/user";
-import { isOwner } from "@/entities/user/_domain/ability";
 
 import { useUpdateLocation } from "../_vm/use-update-location";
 import { useCreateLocation } from "../_vm/use-create-location";
@@ -116,7 +115,6 @@ export function LocationForm({
         <FormField
           control={form.control}
           name="description"
-          disabled={!isOwner(user)}
           render={({ field }) => (
             <FormItem className="col-span-12">
               <FormLabel>Description</FormLabel>

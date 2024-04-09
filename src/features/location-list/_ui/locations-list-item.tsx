@@ -23,7 +23,7 @@ export const LocationListItem = ({
   user: SharedUser;
 }) => {
   return (
-    <div className="w-full md:w-1/2 px-1.5 mb-3">
+    <div className="w-full md:w-1/2 lg:w-1/3 px-1.5 mb-3">
       <Card className="relative">
         <CardHeader className="p-3">
           <CardTitle className="text-lg pr-8">

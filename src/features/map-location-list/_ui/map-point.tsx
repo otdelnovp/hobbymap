@@ -15,9 +15,11 @@ export const MapPoint = ({ location }: { location: Location }) => {
       key={location.id}
       icon={getMapIcon(location.hobby)}
     >
-      <Tooltip direction="top" offset={[-15, -13]}>
-        {location.title}
-      </Tooltip>
+      {!navigator?.maxTouchPoints && (
+        <Tooltip direction="top" offset={[-15, -13]}>
+          {location.title}
+        </Tooltip>
+      )}
       <Popup>
         <div className="w-[300px]">
           <h3 className="font-semibold mb-1">

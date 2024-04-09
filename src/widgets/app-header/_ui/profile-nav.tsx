@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { compact } from "lodash-es";
-import { Contact, LockKeyhole, LogOut, MapPinned } from "lucide-react";
+import { LogOut } from "lucide-react";
 
 import {
   DropdownMenuGroup,
@@ -9,42 +8,15 @@ import {
 } from "@/shared/ui/dropdown-menu";
 
 import { SharedUser } from "@/kernel/domain/user";
-import { isAdmin } from "@/entities/user/profile";
 import { useSignOut } from "@/features/auth/use-sign-out";
+
+import { AppHeaderNavItem } from "../_domain/types";
+import { profileNavList } from "../_constants";
 
 export function ProfileNav({ user }: { user: SharedUser }) {
   const { signOut, isPending: isLoadingSignOut } = useSignOut();
 
-  type ItemNav = {
-    link: string;
-    title: string;
-    icon: React.ReactElement;
-  };
-
-  const navList: ItemNav[] = compact([
-    {
-      link: "/lk",
-      title: "Personal page",
-      icon: <Contact className="mr-2 h-4 w-4" />,
-    },
-    {
-      link: "/my-locations",
-      title: "My locations",
-      icon: <MapPinned className="mr-2 h-4 w-4" />,
-    },
-    // {
-    //   link: `/profile/${user?.id}`,
-    //   title: "Профиль",
-    //   icon: <User className="mr-2 h-4 w-4" />,
-    // },
-    isAdmin(user) && {
-      link: "/api-doc",
-      title: "Admin panel",
-      icon: <LockKeyhole className="mr-2 h-4 w-4" />,
-    },
-  ]);
-
-  const itemNavTemplate = ({ link, title, icon }: ItemNav) => {
+  const itemNavTemplate = ({ link, title, icon }: AppHeaderNavItem) => {
     return (
       <DropdownMenuItem key={link} asChild>
         <Link href={link}>
@@ -57,7 +29,7 @@ export function ProfileNav({ user }: { user: SharedUser }) {
 
   return (
     <DropdownMenuGroup>
-      {navList.map((itemNav) => itemNavTemplate(itemNav))}
+      {profileNavList(user).map((itemNav) => itemNavTemplate(itemNav))}
       <DropdownMenuSeparator />
       <DropdownMenuItem disabled={isLoadingSignOut} onClick={() => signOut()}>
         <LogOut className="mr-2 h-4 w-4 text-red-700 dark:text-red-500" />

@@ -1,25 +1,11 @@
-import { SheetClose } from "@/shared/ui/sheet";
-import { PlusCircle } from "lucide-react";
 import Link from "next/link";
 
+import { SheetClose } from "@/shared/ui/sheet";
+import { AppHeaderNavItem } from "../_domain/types";
+import { mainNavList } from "../_constants";
+
 export function MainNav({ sheet }: { sheet?: boolean }) {
-  type ItemNav = {
-    link: string;
-    title: string;
-    icon?: React.ReactElement;
-  };
-
-  const navList: ItemNav[] = [
-    { link: "/", title: "Map" },
-    { link: "/about", title: "About" },
-    {
-      link: "/add-location",
-      title: "Add location",
-      icon: <PlusCircle className="w-4 h-4 mr-1" />,
-    },
-  ];
-
-  const itemNavTemplate = ({ link, title, icon }: ItemNav) => {
+  const itemNavTemplate = ({ link, title, icon }: AppHeaderNavItem) => {
     const itemLink = (
       <Link
         key={link}
@@ -41,7 +27,7 @@ export function MainNav({ sheet }: { sheet?: boolean }) {
 
   return (
     <nav className="flex items-start md:items-center gap-6 text-sm font-medium flex-col md:flex-row ">
-      {navList.map((itemNav) => itemNavTemplate(itemNav))}
+      {mainNavList().map((itemNav) => itemNavTemplate(itemNav))}
     </nav>
   );
 }

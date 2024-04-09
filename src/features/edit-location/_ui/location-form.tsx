@@ -78,7 +78,6 @@ export function LocationForm({
   const isPending = updateLocation.isPending || createLocation.isPending;
 
   const handleSubmit = form.handleSubmit(async (data) => {
-    console.log(11111, data);
     const newLocation = location?.id
       ? await updateLocation.update({
           locationId: location.id,

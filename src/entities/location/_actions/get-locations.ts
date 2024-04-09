@@ -20,8 +20,6 @@ export const getLocationsAction = async (
 ) => {
   const { userId, hobby } = propsSchema.parse(props);
 
-  console.log(11111, userId, hobby);
-
   const session = await getAppSessionServer();
 
   const locations = await getLocationsService.exec({
@@ -29,8 +27,6 @@ export const getLocationsAction = async (
     hobby,
     session,
   });
-
-  console.log(333333, locations);
 
   return resultSchema.parseAsync({
     locations,

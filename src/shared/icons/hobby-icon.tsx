@@ -2,7 +2,6 @@
 
 import { getProfileDisplayHobbyIcon } from "@/entities/user/profile";
 import { Hobby } from "@/kernel/domain/user";
-import { type ClassValue } from "clsx";
 import { cn } from "../ui/utils";
 
 export const HobbyIcon = ({

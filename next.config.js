@@ -2,7 +2,7 @@
 const nextConfig = {
   experimental: {
     serverActions: {
-      allowedOrigins: ["localhost:1111", "hobbymap.vercel.app"],
+      allowedOrigins: ["localhost:3000", "hobbymap.vercel.app"],
     },
   },
   images: {

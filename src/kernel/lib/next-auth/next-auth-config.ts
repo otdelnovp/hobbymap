@@ -1,10 +1,13 @@
 import { AuthOptions } from "next-auth";
-import EmailProvider from "next-auth/providers/email";
-import GoogleProvider from "next-auth/providers/google";
+import { compact } from "lodash-es";
+
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { dbClient } from "@/shared/lib/db";
-import { compact } from "lodash-es";
 import { privateConfig } from "@/shared/config/private";
+
+import EmailProvider from "next-auth/providers/email";
+import GoogleProvider from "next-auth/providers/google";
+
 import { HOBBY, ROLES, SharedUser } from "@/kernel/domain/user";
 import { createId } from "@/shared/lib/id";
 

@@ -21,7 +21,7 @@ const emailToken = privateConfig.TEST_EMAIL_TOKEN
 export const nextAuthConfig: AuthOptions = {
   adapter: {
     ...prismaAdapter,
-    createUser: async (data) => {
+    createUser: async (data: any) => {
       const ownerEmails = privateConfig.OWNER_EMAILS?.split(",") ?? [];
       const adminEmails = privateConfig.ADMIN_EMAILS?.split(",") ?? [];
       const role = ownerEmails.includes(data.email)
